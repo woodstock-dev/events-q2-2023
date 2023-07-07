@@ -5,7 +5,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import EventList from './pages/eventList';
 import AddEvents from './pages/addEvents';
-import EventDetails from './pages/viewEvent';
+import EventDetails from './pages/eventDetails';
 
 function App() {
 
