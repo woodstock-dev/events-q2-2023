@@ -3,21 +3,21 @@ import './app.css';
 import Login from './pages/login';
 import Header from './components/header';
 import Footer from './components/footer';
-import ShowEvents from './pages/showEvents';
+import EventList from './pages/eventList';
 import AddEvents from './pages/addEvents';
-import ViewEvent from './pages/viewEvent';
+import EventDetails from './pages/viewEvent';
 
 function App() {
 
   return (
     <Routes>
       <Route path="/" element={<Layout />} >
-        <Route index element={<ShowEvents />} />
-        <Route index element={<ViewEvent />} />
+        <Route index element={<EventList />} />
+        <Route index element={<EventDetails />} />
         <Route path="/pages/addEvents" element={<AddEvents />} />
         <Route path="/pages/login" element={<Login />} />
       </Route>
-    </Routes>
+    </Routes>             
   )
 }
 function Layout() {
