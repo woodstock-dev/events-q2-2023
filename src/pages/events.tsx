@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Events = () => {
-  return(<React.Fragment></React.Fragment>)
+  return(<React.Fragment>Events</React.Fragment>)
 }
 
 export default Events

@@ -1,5 +1,6 @@
 import React from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const AuthContext = React.createContext<AuthContextType>(null!);
 
 const fakeAuthProvider = {
@@ -19,8 +20,6 @@ export interface AuthContextType {
   signin: (user: string, callback: VoidFunction) => void;
   signout: (callback: VoidFunction) => void;
 }
-
-
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = React.useState<string | null>(null);
