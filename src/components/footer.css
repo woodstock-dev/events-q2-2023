@@ -1,0 +1,9 @@
+.footer {
+  height: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4974a5;
+  display: flex;
+  position: absolute;
+}

@@ -1,8 +1,10 @@
-import React from "react";
+//import React from "react";
 
 const Login = () => {
   return(
-    <React.Fragment></React.Fragment>
+    <div>
+      <p>Please Login</p>
+    </div>
   )
 }
 
