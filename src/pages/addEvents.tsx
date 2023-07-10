@@ -11,13 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import {
-  DatePicker,
-  TimePicker,
-} from '@mui/x-date-pickers';
+import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { Box } from '@mui/system';
-import { TextField, Container } from '@mui/material';
+import { TextField, Container, Button } from '@mui/material';
 
 const AddEvents = () => {
   return (
@@ -29,17 +26,32 @@ const AddEvents = () => {
         sx={{
           display: 'flex',
           mt: 20,
-
-          justifyContent: 'center',
           flexDirection: 'column',
         }}
       >
-        <DatePicker />
-        <TimePicker
-          label='Select a Time'
-          defaultValue={dayjs('2022-04-17T15:30')}
-        />
-        <TextField label='Event Description' variant='outlined' />
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            width: 600,
+          }}
+        >
+          <DatePicker />
+          <TimePicker
+            label='Select a Time'
+            defaultValue={dayjs('2022-04-17T15:30')}
+          />
+          <TextField label='Event Description' variant='outlined' />
+          <Button
+            sx={{
+              m: 6,
+            }}
+            variant='contained'
+          >
+            Submit
+          </Button>
+        </Container>
       </Box>
     </div>
   );
