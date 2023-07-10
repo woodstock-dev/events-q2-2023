@@ -12,3 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import React from 'react';
+import {AppBar, Toolbar, Typography} from "@mui/material";
+
+const Header = () => {
+  const displayHeader = () => {
+    return <Toolbar>{Nav}</Toolbar>
+  }
+  const Nav = (<Typography variant="h6" component="h1">
+  Events List
+</Typography>)
+   return (
+    <React.Fragment>
+      <header>
+      <AppBar>{displayHeader()}</AppBar>
+    </header>
+    </React.Fragment>
+   )
+}
+export default Header;
