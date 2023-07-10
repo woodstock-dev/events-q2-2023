@@ -1,26 +1,10 @@
-.event-input {
-  margin: 5px 0 10px 0;
+
+.input-item {
+  background-color: white;
 }
 
-.event-form {
-  display: flex;
-  flex-direction: column;
-  width: 220px;
+.paper {
+  max-width: 400px;
   margin: auto;
-  background-color: rgb(233, 233, 233);
-  padding: 0 0 10px 20px;
-  border-radius: 7px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+  padding: 25px;
 }
-
-.add-event-text {
-  margin-left: 15px;
-}
-
-.text-area{
-  height: 75px;
-  width: 195px;
-  margin: 5px 0 10px 0;
-  
-}
-
