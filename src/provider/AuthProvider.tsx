@@ -17,12 +17,17 @@ const fakeAuthProvider = {
 
 export interface AuthContextType {
   user: string | null;
+  isAuthenticated: () => boolean;
   signin: (user: string, callback: VoidFunction) => void;
   signout: (callback: VoidFunction) => void;
 }
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = React.useState<string | null>(null);
+
+  const isAuthenticated = () => {
+    return user && user != undefined && user != null
+  }
 
   const signin = (newUser: string, callback: VoidFunction) => {
     return fakeAuthProvider.signin(() => {
@@ -38,7 +43,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const value = {user: user, signin: signin, signout: signout} as AuthContextType
+  const value = {user: user, signin: signin, signout: signout, isAuthenticated: isAuthenticated} as AuthContextType
 
   return(
     <AuthContext.Provider value={value}>
