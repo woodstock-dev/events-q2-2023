@@ -7,24 +7,29 @@ import Footer from './components/footer'
 /**Localization provider and adapter for date component library */
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { ThemeOptions } from '@mui/material/styles';
 
 import { ReactDOM } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {Routes, Route } from 'react-router-dom'
+
+/**
+ * TODO: useNavigate() hook
+ */
 
 function App() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Router>
-      
-        <Header />
+    
+    <Header />
       <Routes>
+        
         <Route path='/login' element={<Login />}></Route>
         <Route path='/addEvents' element={<AddEvents/>}></Route>
       </Routes>
       <Footer />
       
-   </Router>
+      
    </LocalizationProvider>
   )
 }

@@ -14,46 +14,55 @@
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { Box } from '@mui/system';
+
+import Input from '@mui/base/Input';
 import { TextField, Container, Button } from '@mui/material';
+
+import FormControl from '@mui/base/FormControl';
+import CssBaseline from '@mui/material/CssBaseline';
+import React from 'react';
 
 const AddEvents = () => {
   return (
-    <div>
+    <React.Fragment>
       {/**
-       * Using MUI box component to create proper spacing for form
+       * Using Container component main to set default margin for form
+       * Using CSSBaseline for consistency
+       *  
        */}
+      
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        
+       {/**
+        * Mui Box component to build form styling
+        */}
+
       <Box
         sx={{
           display: 'flex',
           mt: 20,
           flexDirection: 'column',
         }}
-      >
-        <Container
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            width: 600,
-          }}
         >
-          <DatePicker />
-          <TimePicker
-            label='Select a Time'
-            defaultValue={dayjs('2022-04-17T15:30')}
-          />
+
+          
+        <DatePicker />
+        <TimePicker
+          label='Select a Time'
+          defaultValue={dayjs('2022-04-17T15:30')}
+        />
           <TextField label='Event Description' variant='outlined' />
           <Button
-            sx={{
+          sx={{
               m: 6,
             }}
-            variant='contained'
-          >
-            Submit
-          </Button>
+          variant='contained'>Submit</Button>
+
+        
+        </Box>
         </Container>
-      </Box>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -1,25 +1,50 @@
-// Copyright 2023 YOUR NAME HERE
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+import * as React from 'react';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import React from 'react'
+import { GitHub } from '@mui/icons-material';
+import DescriptionIcon from '@mui/icons-material/Description';
 
-const Footer = () => {
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+
+export default function Footer() {
+  const [value, setValue] = React.useState('recents');
+  const [likeCount, setLikeCount] = React.useState(Number);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <BottomNavigation
+      sx={{
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        right: 0,
+      }}
+      value={value}
+      onChange={handleChange}
+    >
+      <BottomNavigationAction
+        id='likes-button'
+        label='Likes'
+        value='likes'
+        icon={<FavoriteIcon />}
+      />
+      <BottomNavigationAction label='Github' value='github' icon={<GitHub />} />
 
-export default Footer
+      <BottomNavigationAction
+        label='Resume'
+        value='resume-icon'
+        icon={<DescriptionIcon />}
+      />
+      <BottomNavigationAction
+        label='Connect'
+        value='connect-icon'
+        icon={<PersonSearchIcon />}
+      />
+    </BottomNavigation>
+  );
+}
