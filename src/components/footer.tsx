@@ -1,16 +1,15 @@
 import * as React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 
+
+import LanguageIcon from '@mui/icons-material/Language';
 import { GitHub } from '@mui/icons-material';
 import DescriptionIcon from '@mui/icons-material/Description';
-
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 export default function Footer() {
   const [value, setValue] = React.useState('recents');
-  const [likeCount, setLikeCount] = React.useState(Number);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -28,10 +27,9 @@ export default function Footer() {
       onChange={handleChange}
     >
       <BottomNavigationAction
-        id='likes-button'
-        label='Likes'
-        value='likes'
-        icon={<FavoriteIcon />}
+        label='Website'
+        value='website'
+        icon={<LanguageIcon />}
       />
       <BottomNavigationAction label='Github' value='github' icon={<GitHub />} />
 

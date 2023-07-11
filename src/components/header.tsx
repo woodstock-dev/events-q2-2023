@@ -20,10 +20,15 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
 
 
 
 const Header = () => {
+
+  const nav = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -33,7 +38,8 @@ const Header = () => {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu">
+            aria-label="menu"
+            onClick={() => nav('/')}>
             <CalendarMonthIcon/>
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
