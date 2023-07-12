@@ -3,10 +3,10 @@ import './app.css'
 import Login from './pages/login'
 import Events from './pages/events'
 import RequireAuth from './components/requireAuth'
+import { Box } from '@mui/material'
 import Header from './components/header'
 import Footer from './components/footer'
 import EventForm from './pages/eventForm'
-import React from 'react'
 
 function App() {
   return (
@@ -24,17 +24,24 @@ function App() {
           } />
       </Route>
     </Routes>
-  );
+  )
 }
 
 const Layout = () => {
-  return (
-    <React.Fragment>
+  return(
+    <Box sx={{
+          m: 0, 
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
       <Header />
-      <Outlet />
+      <main>
+      <Box sx={{flexGrow: 1}}>
+        <Outlet />
+      </Box>
+      </main>
       <Footer />
-    </React.Fragment>
-  );
-};
+    </Box>)
+}
 
-export default App;
+export default App
