@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../hooks/auth'
 
 import { Button, TextField } from '@mui/material'
-import { Navigate, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 const Login = () => {
   const [user, setUser] = useState('')

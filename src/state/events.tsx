@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-interface EventState {
+export interface EventState {
   name: string
 }
 
