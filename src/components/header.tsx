@@ -13,20 +13,24 @@
 // limitations under the License.
 
 import React from 'react';
-import {AppBar, Toolbar, Typography} from "@mui/material";
+import { useNavigate } from "react-router-dom"
+import {AppBar, Button, Toolbar, Typography} from "@mui/material";
 
 const Header = () => {
-  const displayHeader = () => {
-    return <Toolbar>{Nav}</Toolbar>
-  }
-  const Nav = (<Typography variant="h6" component="h1">
-  Events List
-</Typography>)
+  const nav = useNavigate()
+  
    return (
     <React.Fragment>
-      <header>
-      <AppBar>{displayHeader()}</AppBar>
-    </header>
+      <Toolbar>
+        <AppBar>
+          <Typography variant="h6" component="h1">
+            <Button color="inherit" onClick={() => nav('/')}>Home</Button>
+            <Button color="inherit" onClick={() => nav('Events')}>Events</Button>
+            <Button color="inherit" onClick={() => nav('EventView')}>Event Details</Button>
+            <Button color="inherit" onClick={() => nav('EventForm')}>Add Event</Button>
+          </Typography>
+        </AppBar>
+      </Toolbar>
     </React.Fragment>
    )
 }

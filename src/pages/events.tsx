@@ -12,3 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import React from 'react';
+import Header from '../components/header.tsx';
+
+const Events = () => {
+
+  return (
+    <React.Fragment>
+      Event Page Test
+    </React.Fragment>
+  )
+}
+
+export default Events;

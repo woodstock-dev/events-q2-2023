@@ -12,3 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import React from 'react';
+import Header from '../components/header.tsx';
+
+const EventForm = () => {
+
+  return (
+    <React.Fragment>
+      
+      Event Form Page Test
+    </React.Fragment>
+  )
+}
+
+export default EventForm;

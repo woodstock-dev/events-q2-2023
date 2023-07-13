@@ -11,4 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import React from 'react';
+import {Box} from "@mui/material";
 
+const Footer = () => {
+
+  return (
+    <React.Fragment>
+      <Box sx={{
+    borderTop: "1px solid #000",
+    marginTop: "auto",
+    p: 1,
+    
+  }}
+  component="footer"
+>
+      Copyright Cody Black 2023
+      </Box>
+    </React.Fragment>
+  )
+}
+
+export default Footer;

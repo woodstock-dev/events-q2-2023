@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <Header />
+      Login Page Test
     </React.Fragment>
   )
 }
