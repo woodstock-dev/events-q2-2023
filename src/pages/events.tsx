@@ -1,8 +1,6 @@
-import React from "react";
 import EventFilter from "../components/eventFilter";
 import { sampleData } from "../data/model";
 import {
-  Box,
   Container,
   IconButton,
   Paper,
