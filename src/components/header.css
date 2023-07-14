@@ -1,31 +1,14 @@
-.header {
-  width: 100%;
-  top: 0;
-  position: absolute;
-  padding-top: 25px;
-  box-shadow: 0 1px 2px #3d4940;
-  background-color: #abd1b5;
-}
-
-h1 {
-  display: inline;
-  padding-top: 10px;
-  margin: 20px 0 0 20px;
-}
-
-.small-heading {
-  display: inline;
-  margin-left: 5px;
-}
-
-nav {
-  text-align: right;
-  padding: 10px;
-  margin-top: -10px;
-}
 
 .nav-links {
   padding: 10px;
   text-decoration: none;
+  color: #4974a5;
 }
 
+.header-text {
+  display: inline;
+}
+
+.header {
+  margin-bottom: 25px;
+}

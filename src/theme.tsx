@@ -11,4 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import { ThemeOptions } from '@mui/material/styles';
 
+export const themeOptions: ThemeOptions = {
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#abd1b5',
+    },
+    secondary: {
+      main: '#4974a5',
+    },
+  },
+};

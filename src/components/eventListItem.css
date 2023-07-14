@@ -14,3 +14,17 @@
  * limitations under the License.
  */
 
+.list-item {
+  max-width: 500px;
+  margin: auto;
+  padding: 10px;
+}
+
+.edit-delete {
+  display: inline;
+  
+}
+
+.stack {
+  margin-left: -7px;
+}
