@@ -23,7 +23,6 @@ const AddEvents = () => {
     <Paper
       elevation={3}
       sx={{
-        mt: 20,
         maxWidth: 400,
         p: 2,
       }}

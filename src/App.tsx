@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 /**Localization provider and adapter for date component library */
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Container } from 'react-dom';
 
 /**
  * TODO: useNavigate() hook
@@ -37,7 +38,14 @@ const Layout = () => {
     >
       <Header />
       <main>
-        <Box sx={{ flexGrow: 100 }}>
+        <Box
+          sx={{
+            flexGrow: 100,
+            display: 'flex',
+            justifyContent: 'center',
+            mt: 20,
+          }}
+        >
           <Outlet />
         </Box>
       </main>
