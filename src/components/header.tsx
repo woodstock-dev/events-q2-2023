@@ -1,11 +1,11 @@
 // Copyright 2023 YOUR NAME HERE
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,38 +18,32 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { Navigate, useNavigate } from 'react-router-dom';
-
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-
   const nav = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position='fixed'>
         <Toolbar>
-          
-          <IconButton 
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => nav('/')}>
-            <CalendarMonthIcon/>
+          <IconButton
+            size='large'
+            edge='start'
+            color='inherit'
+            aria-label='menu'
+            onClick={() => nav('/')}
+          >
+            <CalendarMonthIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Task Scheduler
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

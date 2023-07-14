@@ -21,5 +21,14 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" },
+  {
+    "compilerOptions": {
+        "lib": [
+            "es5", "es6", "dom", "dom.iterable"
+        ]
+    }
+}
+],
+  
 }

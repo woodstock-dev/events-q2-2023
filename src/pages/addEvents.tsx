@@ -13,56 +13,60 @@
 // limitations under the License.
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
-import { Box } from '@mui/system';
 
-import Input from '@mui/base/Input';
-import { TextField, Container, Button } from '@mui/material';
-
-import FormControl from '@mui/base/FormControl';
-import CssBaseline from '@mui/material/CssBaseline';
-import React from 'react';
+import { TextField, Button, Paper } from '@mui/material';
+import { Grid } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const AddEvents = () => {
   return (
-    <React.Fragment>
-      {/**
-       * Using Container component main to set default margin for form
-       * Using CSSBaseline for consistency
-       *  
-       */}
-      
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        
-       {/**
-        * Mui Box component to build form styling
-        */}
+    <Paper
+      elevation={3}
+      sx={{
+        mt: 20,
+        maxWidth: 400,
+        p: 2,
+      }}
+    >
+      <Typography
+        variant='h5'
+        component='h2'
+        align='center'
+        gutterBottom={true}
+      >
+        Create An Event
+      </Typography>
 
-      <Box
-        sx={{
-          display: 'flex',
-          mt: 20,
-          flexDirection: 'column',
-        }}
-        >
-
-          
-        <DatePicker />
-        <TimePicker
-          label='Select a Time'
-          defaultValue={dayjs('2022-04-17T15:30')}
-        />
-          <TextField label='Event Description' variant='outlined' />
+      <Grid container direction='row' spacing={1}>
+        <Grid item xs={6}>
+          <DatePicker />
+        </Grid>
+        <Grid item xs={6}>
+          <TimePicker
+            label='Select a Time'
+            defaultValue={dayjs('2022-04-17T15:30')}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label='Event Description'
+            variant='outlined'
+            multiline
+            rows={8}
+          />
+        </Grid>
+        <Grid item xs={6}>
           <Button
-          sx={{
+            sx={{
               m: 6,
             }}
-          variant='contained'>Submit</Button>
-
-        
-        </Box>
-        </Container>
-    </React.Fragment>
+            variant='contained'
+          >
+            Submit
+          </Button>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 };
 
