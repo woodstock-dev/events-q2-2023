@@ -36,7 +36,7 @@ const AddEvents = () => {
         Create An Event
       </Typography>
 
-      <Grid container direction='row' spacing={1}>
+      <Grid container direction='row' spacing={2}>
         <Grid item xs={6}>
           <DatePicker />
         </Grid>

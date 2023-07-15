@@ -3,12 +3,13 @@ import Login from './pages/login';
 import AddEvents from './pages/addEvents';
 import Header from './components/header';
 import Footer from './components/footer';
+import EventList from './pages/eventList';
 
+import { CssBaseline } from '@mui/material';
 import { Box } from '@mui/material';
 /**Localization provider and adapter for date component library */
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Container } from 'react-dom';
 
 /**
  * TODO: useNavigate() hook
@@ -17,10 +18,12 @@ import { Container } from 'react-dom';
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <CssBaseline />
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Login />}></Route>
           <Route path='/addEvents' element={<AddEvents />}></Route>
+          <Route path='/eventList' element={<EventList />}></Route>
         </Route>
       </Routes>
     </LocalizationProvider>

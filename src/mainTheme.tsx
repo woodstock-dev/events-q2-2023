@@ -16,14 +16,19 @@ import { ThemeOptions } from '@mui/material';
 
 export const mainTheme: ThemeOptions = {
   palette: {
-    mode: 'dark',
-
+    mode: 'light',
     primary: {
-      main: '#3f51b5',
+      main: '#004d40',
     },
-
+    secondary: {
+      main: '#9c27b0',
+    },
     background: {
-      default: '#1f304c',
+      default: '#263238',
+      paper: '#37474f',
+    },
+    text: {
+      primary: '#eee',
     },
   },
 };
