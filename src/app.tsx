@@ -2,10 +2,8 @@
 
 
 import React from 'react'
-import Login from './pages/login.tsx';
-import Events from './pages/events.tsx';
-import EventView from './pages/eventView.tsx';
-import EventForm from './pages/eventForm.tsx';
+const Login = React.lazy(() => import ('./pages/login.tsx'));
+const Events = React.lazy(() => import ('./pages/events.tsx'));
 import Header from './components/header.tsx';
 import Footer from './components/footer.tsx';
 import './app.css'
@@ -20,9 +18,8 @@ function App() {
       <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Login />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/eventView" element={<EventView />} />
-        <Route path="/eventForm" element={<EventForm />} />
+        <Route path="events/*" element={<React.Suspense><Events /></React.Suspense>} />
+        
       </Route>
     </Routes>
       

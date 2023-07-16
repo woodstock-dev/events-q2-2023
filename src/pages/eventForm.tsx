@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import React from 'react';
-import Header from '../components/header.tsx';
 
 const EventForm = () => {
 

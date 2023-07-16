@@ -13,13 +13,40 @@
 // limitations under the License.
 
 import React from 'react';
-import Header from '../components/header.tsx';
+import { Routes, Route, Outlet } from "react-router-dom";
+import Login from './login.tsx';
+const EventForm = React.lazy(() => import ('./eventForm.tsx'));
+const EventView = React.lazy(() => import ('./eventView.tsx'));
+
+
+
 
 const Events = () => {
+  
 
   return (
     <React.Fragment>
-      Event Page Test
+      <Routes>
+      <Route path="/" element={<Layout />} >
+        <Route index element={<Login />} />
+        <Route path="details" element={<EventView />} />
+        <Route path="add" element={<EventForm />} />
+      </Route>
+    </Routes>
+    Event Page Test
+    
+     
+    </React.Fragment>
+  )
+}
+function Layout() {
+  
+
+  return (
+    <React.Fragment>
+      
+      <Outlet />
+      
     </React.Fragment>
   )
 }
