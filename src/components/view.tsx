@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const Events = () => {
+const View = () => {
   return(
     <div>
-      <h1>Events</h1>
+      <h1>Event View</h1>
     </div>
   )
 }
 
-export default Events
+export default View

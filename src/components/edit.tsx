@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const EventView = () => {
+const Edit = () => {
   return(
     <div>
-      <h1>Event View</h1>
+      <h1>Event Edit</h1>
     </div>
   )
 }
 
-export default EventView
+export default Edit

@@ -1,30 +1,34 @@
-import { Routes, Route, Outlet } from "react-router-dom";
-import Footer from './components/footer'
-import Header from './components/header'
-import Form from './pages/Form'
-import Events from './pages/events'
-import EventView from './pages/eventView'
-import Login from './pages/login'
-import { Box, Stack } from "@mui/material";
+import { Routes, Route, Outlet } from "react-router-dom"
+import { lazy, Suspense } from 'react'
+import { Stack } from "@mui/material"
 
+const Footer = lazy(() => import('./components/footer'))
+const Header = lazy(() => import('./components/header'))
+const EventPage = lazy(() => import('./pages/eventPage'))
+const Add = lazy(() => import('./components/add'))
+const Edit = lazy(() => import('./components/edit'))
+// const View = lazy(() => import('./components/view'))
+const Login = lazy(() => import('./pages/login'))
 
 function App() {
 
   return (
     <Routes>
-        <Route path="/" element={<Layout />} >
-          <Route index element={<Login />} />
-          <Route path="/Form" element={<Form />} />
-          <Route path="/Events" element={<Events />} />
-          <Route path="/EventView" element={<EventView />} />
+      <Route path="/" element={<Layout />} >
+        <Route index element={<Login />} />
+        <Route path="/eventPage" >
+          <Route index element={<EventPage />} />
+          <Route path="/eventPage/add" element={<Add />} />
+          <Route path="/eventPage/:id" element={<Edit />} />
         </Route>
+      </Route>
     </Routes>
   )
 }
 
 function Layout() {
   return (
-    <Box>
+    <Suspense>
         <Stack direction="column"
           sx={{
             minHeight: '100vh',
@@ -33,7 +37,7 @@ function Layout() {
           <Outlet />
           <Footer />
         </Stack>
-    </Box>
+    </Suspense>
   );
 }
 

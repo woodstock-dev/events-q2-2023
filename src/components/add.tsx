@@ -12,12 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const Form = () => {
+import { TextField, FormControl, Grid, Typography, Box } from "@mui/material"
+const Add = () => {
   return(
-    <div>
-      <h1>Form Page</h1>
-    </div>
+    <Grid
+      mt="40px"
+      display="flex"
+      direction="column"
+      alignItems="center"
+    >
+      <Typography variant="h4">Add New Event</Typography>
+      <FormControl>
+        <TextField margin="normal" label="Event Title" color="secondary" focused />
+        <TextField multiline margin="normal" label="Location" color="secondary" focused />
+        <TextField multiline margin="normal" label="Date/Time" color="secondary" focused />
+      </FormControl>
+    </Grid>
   )
 }
 
-export default Form
+export default Add
