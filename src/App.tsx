@@ -1,31 +1,38 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import Login from './pages/login';
-import AddEvents from './pages/addEvents';
+import * as React from 'react';
+
 import Header from './components/header';
 import Footer from './components/footer';
-import EventList from './pages/eventList';
 
-import { CssBaseline } from '@mui/material';
 import { Box } from '@mui/material';
 /**Localization provider and adapter for date component library */
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
+import CssBaseline from '@mui/material/CssBaseline';
+
 /**
- * TODO: useNavigate() hook
+ * Lazy loading pages with React lazy
  */
+
+const LoginPage = React.lazy(() => import('./pages/login'));
+const AddEventsPage = React.lazy(() => import('./pages/addEvents'));
+const EventListPage = React.lazy(() => import('./pages/eventList'));
 
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <CssBaseline />
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<Login />}></Route>
-          <Route path='/addEvents' element={<AddEvents />}></Route>
-          <Route path='/eventList' element={<EventList />}></Route>
-        </Route>
-      </Routes>
+
+      <React.Suspense>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<LoginPage />}></Route>
+            <Route path='/addEvents' element={<AddEventsPage />}></Route>
+            <Route path='/eventList' element={<EventListPage />}></Route>
+          </Route>
+        </Routes>
+      </React.Suspense>
     </LocalizationProvider>
   );
 }

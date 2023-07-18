@@ -11,25 +11,31 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Card } from '@mui/material';
+import { Card, IconButton } from '@mui/material';
 import { CardContent } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/material';
 import { CalendarIcon } from '@mui/x-date-pickers';
+import { Delete, Edit } from '@mui/icons-material';
 import { Grid } from '@mui/material';
+import { TextField } from '@mui/material';
+import { TaskContext } from '../@types/data';
+import { createContext, useContext, useState } from 'react';
 
-const EventCard = () => {
+import { allTasks } from '../@types/data';
+import { Task } from '../@types/data';
+
+const data = allTasks;
+
+const EventCard = ({ task }: { task: Task }) => {
   return (
-    <Box
-      sx={{
-        minWidth: 300,
-      }}
-    >
+    <Box sx={{ minWidth: 300 }}>
       <Card
         variant='outlined'
         sx={{
           border: '2px solid #004d40',
           borderRadius: '16px',
+          m: 2,
         }}
       >
         <CardContent>
@@ -37,21 +43,55 @@ const EventCard = () => {
             container
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            sx={{ justifyContent: 'center' }}
+            sx={{ alignItems: 'center' }}
           >
-            <Grid item xs={2} sx={{}}>
+            <Grid item xs={2}>
               <CalendarIcon fontSize='large' />
             </Grid>
             <Grid
               item
-              xs={8}
+              xs={4}
               sx={{
                 display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Typography sx={{ fontSize: 18 }} color='' gutterBottom>
-                Sample Event
-              </Typography>
+              <TextField
+                disabled
+                id='start-disabled'
+                label='Event Start'
+                defaultValue='Event Name'
+              />
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <TextField
+                disabled
+                id='end-disabled'
+                label='Event End'
+                defaultValue={'Temp'}
+              />
+            </Grid>
+            <Grid item xs={2} sx={{}}>
+              <IconButton>
+                <Edit aria-label='delete' sx={{ color: '#36b457' }} />
+              </IconButton>
+              <IconButton>
+                <Delete
+                  aria-label='delete'
+                  sx={{
+                    color: 'red',
+                  }}
+                />
+              </IconButton>
             </Grid>
           </Grid>
 

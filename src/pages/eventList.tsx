@@ -11,13 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+/**
+ * map through cards with
+ * {data.map((T)=>(<EventCard value={{task}}/>))}
+ *
+ */
+
 import EventCard from '../components/eventCard';
 import { Typography } from '@mui/material';
+import { Container } from '@mui/material';
+import { allTasks } from '../@types/data';
 import DashMenu from '../components/dashMenu';
+
+const data = allTasks;
+
 const EventList = () => {
   return (
     <div>
       <DashMenu />
+
       <Typography
         variant='h4'
         color=''
@@ -27,7 +39,9 @@ const EventList = () => {
       >
         Event View Dashboard
       </Typography>
-      <EventCard />
+      {data.map((T) => (
+        <EventCard />
+      ))}
     </div>
   );
 };
