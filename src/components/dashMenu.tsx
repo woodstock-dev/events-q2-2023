@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -24,12 +25,15 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+import { useNavigate } from 'react-router-dom';
+type Anchor = 'top' | 'right' | 'bottom' | 'right';
 
 export default function DashMenu() {
+  const nav = useNavigate();
   const [state, setState] = React.useState({
-    left: false,
+    right: false,
   });
+  const routeNames = ['Task Dashboard', 'Create A Task', 'About', 'Drafts'];
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -53,11 +57,11 @@ export default function DashMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {routeNames.map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -65,30 +69,18 @@ export default function DashMenu() {
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
   return (
     <div>
-      {(['left'] as const).map((anchor) => (
+      {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
             onClick={toggleDrawer(anchor, true)}
             sx={{
               position: 'sticky',
-              left: 200,
+              right: 200,
               color: 'white',
             }}
           >

@@ -42,18 +42,19 @@ export const allTasks : Array<Task> = [
   {
     id: '123',
     start: new Date('2023-08-01T12:00:00'),
-    end: new Date('2023-08-01T13:00:00'),
+    end: new Date('2023-09-01T13:00:00'),
     name: 'Example 1',
     description: 'Something cool'
   },
   {
     id: '1234',
     start: new Date('2023-08-02T12:00:00'),
-    end: new Date('2023-08-02T13:00:00'),
+    end: new Date('2023-10-02T13:00:00'),
     name: 'Example 2',
     description: 'Something else cool'
   }
  ]
   
+ 
  
 export const TaskContext = React.createContext<Task>(null!);

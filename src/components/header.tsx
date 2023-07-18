@@ -20,6 +20,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useNavigate } from 'react-router-dom';
+import DashMenu from './dashMenu';
 
 const Header = () => {
   const nav = useNavigate();
@@ -39,7 +40,7 @@ const Header = () => {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Task Scheduler
           </Typography>
-          <Button color='inherit'>Login</Button>
+          <DashMenu />
         </Toolbar>
       </AppBar>
     </Box>

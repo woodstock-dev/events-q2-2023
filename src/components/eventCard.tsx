@@ -77,7 +77,7 @@ const EventCard = ({ task }: { task: Task }) => {
                 disabled
                 id='end-disabled'
                 label='Event End'
-                defaultValue={'Temp'}
+                defaultValue={data.map((T) => T.end)}
               />
             </Grid>
             <Grid item xs={2} sx={{}}>

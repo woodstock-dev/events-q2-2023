@@ -35,7 +35,7 @@ const AddEvents = () => {
         align='center'
         gutterBottom={true}
       >
-        Create An Event
+        Create A Task
       </Typography>
 
       <Grid container direction='row' spacing={2}>
@@ -48,20 +48,40 @@ const AddEvents = () => {
             defaultValue={dayjs('2022-04-17T15:30')}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <TextField
             label='Event Description'
             variant='outlined'
             multiline
             rows={8}
+            fullWidth={true}
+            sx={{}}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid
+          item
+          xs={12}
+          width={'100%'}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Button
             sx={{
-              m: 6,
+              m: 2,
             }}
             variant='contained'
+            fullWidth={true}
           >
             Submit
           </Button>

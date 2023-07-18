@@ -28,8 +28,6 @@ const data = allTasks;
 const EventList = () => {
   return (
     <div>
-      <DashMenu />
-
       <Typography
         variant='h4'
         color=''
