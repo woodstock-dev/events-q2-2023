@@ -28,8 +28,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<LoginPage />}></Route>
-            <Route path='/addEvents' element={<AddEventsPage />}></Route>
-            <Route path='/eventList' element={<EventListPage />}></Route>
+            <Route path='/events/*' element={<EventListPage />}></Route>
           </Route>
         </Routes>
       </React.Suspense>

@@ -22,10 +22,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Home } from '@mui/icons-material';
+import { Task } from '@mui/icons-material';
+import { PunchClock } from '@mui/icons-material';
+import { Info } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { Menu } from '@mui/icons-material';
 type Anchor = 'top' | 'right' | 'bottom' | 'right';
 
 export default function DashMenu() {
@@ -33,7 +35,28 @@ export default function DashMenu() {
   const [state, setState] = React.useState({
     right: false,
   });
-  const routeNames = ['Task Dashboard', 'Create A Task', 'About', 'Drafts'];
+  const routeNames = [
+    {
+      text: 'Home',
+      icon: <Home />,
+      route: '/',
+    },
+    {
+      text: 'Task Form',
+      icon: <Task />,
+      route: '/events/addEvents',
+    },
+    {
+      text: 'Task View Dashboard',
+      icon: <PunchClock />,
+      route: '/events/',
+    },
+    {
+      text: 'About',
+      icon: <Info />,
+      route: '/',
+    },
+  ];
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -57,16 +80,17 @@ export default function DashMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {routeNames.map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {routeNames.map((item, index) => {
+          const { text, icon, route } = item;
+          return (
+            <ListItem key={text} disablePadding>
+              <ListItemButton onClick={() => nav(route)}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
       </List>
       <Divider />
     </Box>
@@ -84,7 +108,7 @@ export default function DashMenu() {
               color: 'white',
             }}
           >
-            <MenuIcon />
+            <Menu />
           </Button>
           <Drawer
             anchor={anchor}

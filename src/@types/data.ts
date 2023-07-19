@@ -52,6 +52,41 @@ export const allTasks : Array<Task> = [
     end: new Date('2023-10-02T13:00:00'),
     name: 'Example 2',
     description: 'Something else cool'
+  },
+  {
+    id: '1235',
+    start: new Date('2023-08-02T12:00:00'),
+    end: new Date('2023-10-02T13:00:00'),
+    name: 'Example 2',
+    description: 'Something else cool'
+  },
+  {
+    id: '1236',
+    start: new Date('2023-08-02T12:00:00'),
+    end: new Date('2023-10-02T13:00:00'),
+    name: 'Example 2',
+    description: 'Something else cool'
+  },
+  {
+    id: '1237',
+    start: new Date('2023-08-02T12:00:00'),
+    end: new Date('2023-10-02T13:00:00'),
+    name: 'Example 2',
+    description: 'Something else cool'
+  },
+  {
+    id: '1238',
+    start: new Date('2023-08-02T12:00:00'),
+    end: new Date('2023-10-02T13:00:00'),
+    name: 'Example 2',
+    description: 'Something else cool'
+  },
+  {
+    id: '1239',
+    start: new Date('2023-08-02T12:00:00'),
+    end: new Date('2023-10-02T13:00:00'),
+    name: 'Example 2',
+    description: 'Something else cool'
   }
  ]
   

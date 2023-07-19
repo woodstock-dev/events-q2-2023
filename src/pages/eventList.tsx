@@ -18,16 +18,41 @@
  */
 
 import EventCard from '../components/eventCard';
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { Container } from '@mui/material';
 import { allTasks } from '../@types/data';
 import DashMenu from '../components/dashMenu';
+import { Route, Routes, Outlet, useNavigate } from 'react-router-dom';
+import AddEvents from './addEvents';
+import React from 'react';
 
 const data = allTasks;
 
 const EventList = () => {
   return (
-    <div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<Index />} />
+        <Route path='add' element={<AddEvents />} />
+        <Route path='/:id?edit' element={<AddEvents />} />
+        <Route path='/:id' element={<AddEvents />} />
+      </Route>
+    </Routes>
+  );
+};
+
+const Layout = () => {
+  return <Outlet />;
+};
+
+const Index = () => {
+  return (
+    <Container
+      sx={{
+        overflow: 'auto',
+        maxHeight: 600,
+      }}
+    >
       <Typography
         variant='h4'
         color=''
@@ -36,11 +61,11 @@ const EventList = () => {
         }}
       >
         Event View Dashboard
+        {data.map((T) => (
+          <EventCard />
+        ))}
       </Typography>
-      {data.map((T) => (
-        <EventCard />
-      ))}
-    </div>
+    </Container>
   );
 };
 

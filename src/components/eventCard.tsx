@@ -61,7 +61,7 @@ const EventCard = ({ task }: { task: Task }) => {
                 disabled
                 id='start-disabled'
                 label='Event Start'
-                defaultValue='Event Name'
+                defaultValue='Event Start'
               />
             </Grid>
             <Grid
