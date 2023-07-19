@@ -11,13 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Routes, Route, Outlet} from "react-router-dom"
-import { lazy } from 'react'
-import EventPage from "./eventPage"
-import PageNotFound from "./notFound"
+import { Routes, Route, Outlet } from "react-router-dom"
+import { lazy, Suspense } from 'react'
 
 const Events = () => {
   const Add = lazy(() => import('./add'))
+  const EventPage = lazy(() => import('./eventPage'))
+  const PageNotFound = lazy(() => import('./notFound'))
   const Edit = lazy(() => import('./edit'))
 
   return(
@@ -33,7 +33,9 @@ const Events = () => {
 
   function Layout() {
     return (
-    <Outlet />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Outlet />
+    </Suspense>
   )}
 }
 
