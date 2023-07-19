@@ -31,7 +31,7 @@ const Header = () => {
           <Typography variant="h4"><Typography variant="h4" component="span" color="secondary">TASK</Typography>App</Typography>
           <Box>
             <Button variant="outlined" color="secondary" onClick={() => nav('/')}>Login</Button>
-            <Button color="inherit" onClick={() => nav('/eventPage')}>Event Page</Button>
+            <Button color="inherit" onClick={() => nav('events')}>Event Page</Button>
           </Box>
         </StyledToolbar>
       </AppBar>

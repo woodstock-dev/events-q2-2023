@@ -12,12 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const View = () => {
+import { TextField, FormControl, Grid, Typography } from "@mui/material"
+
+const Add = () => {
   return(
-    <div>
-      <h1>Event View</h1>
-    </div>
+    <Grid
+      container
+      mt="40px"
+      display="flex"
+      direction="column"
+      alignItems="center"
+    >
+      <Typography variant="h4">Add New Event</Typography>
+      <FormControl>
+        <TextField margin="normal" label="Event Title" color="secondary" focused />
+        <TextField multiline margin="normal" label="Location" color="secondary" focused />
+        <TextField multiline margin="normal" label="Date/Time" color="secondary" focused />
+      </FormControl>
+    </Grid>
   )
 }
 
-export default View
+export default Add

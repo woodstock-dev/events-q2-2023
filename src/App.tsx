@@ -1,26 +1,20 @@
 import { Routes, Route, Outlet } from "react-router-dom"
 import { lazy, Suspense } from 'react'
 import { Stack } from "@mui/material"
-
-const Footer = lazy(() => import('./components/footer'))
-const Header = lazy(() => import('./components/header'))
-const EventPage = lazy(() => import('./pages/eventPage'))
-const Add = lazy(() => import('./components/add'))
-const Edit = lazy(() => import('./components/edit'))
-// const View = lazy(() => import('./components/view'))
-const Login = lazy(() => import('./pages/login'))
+import Header from "./components/header"
+import Footer from "./components/footer"
 
 function App() {
+  const Events = lazy(() => import('./pages/events'))
+  const Login = lazy(() => import('./pages/login'))
+  const PageNotFound = lazy(() => import('./pages/notFound'))
 
   return (
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Login />} />
-        <Route path="/eventPage" >
-          <Route index element={<EventPage />} />
-          <Route path="/eventPage/add" element={<Add />} />
-          <Route path="/eventPage/:id" element={<Edit />} />
-        </Route>
+        <Route path="events/*" element={<Events />} />
+        <Route path="/*" element={<PageNotFound />} />
       </Route>
     </Routes>
   )
@@ -28,16 +22,19 @@ function App() {
 
 function Layout() {
   return (
-    <Suspense>
-        <Stack direction="column"
-          sx={{
-            minHeight: '100vh',
-          }}>
-          <Header />
+    <Stack 
+      direction="column"
+      sx={{
+        minHeight: '100vh',
+      }}>
+      <Header />
+        <Suspense 
+          fallback={<div>Loading...</div>}
+        >
           <Outlet />
-          <Footer />
-        </Stack>
-    </Suspense>
+        </Suspense>
+      <Footer />
+    </Stack>
   );
 }
 

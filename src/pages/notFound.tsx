@@ -12,23 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TextField, FormControl, Grid, Typography, Box } from "@mui/material"
-const Add = () => {
+const PageNotFound = () => {
   return(
-    <Grid
-      mt="40px"
-      display="flex"
-      direction="column"
-      alignItems="center"
-    >
-      <Typography variant="h4">Add New Event</Typography>
-      <FormControl>
-        <TextField margin="normal" label="Event Title" color="secondary" focused />
-        <TextField multiline margin="normal" label="Location" color="secondary" focused />
-        <TextField multiline margin="normal" label="Date/Time" color="secondary" focused />
-      </FormControl>
-    </Grid>
+    <div>
+      <h1>Page Not Found</h1>
+    </div>
   )
 }
 
-export default Add
+export default PageNotFound

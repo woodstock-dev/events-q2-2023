@@ -36,34 +36,38 @@ export default function EventPage() {
 
   const nav = useNavigate()
   const addButton = <Button color="inherit" onClick={() => nav("add")}>Add Event</Button>
-  const editButton = <Button color="inherit" onClick={() => nav(":id")}>Edit</Button>
+  const editButton = <Button color="inherit" onClick={() => nav("edit")}>Edit</Button>
 
   return (
-      <Grid
-        display="flex"
-        direction="column" 
-        alignItems="center"
-      >
-        <Typography sx={{ mt: 4, mb: 2 }} variant="h4" component="div">
-          All My Events
-        </Typography>
-        {addButton}
-        <List>
-          {generate(
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <FolderIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="Single-line item"
-              />
-              {editButton}
-            </ListItem>,
-          )}
-          
-        </List>
-      </Grid>
+    <Grid
+      container
+      display="flex"
+      direction="column" 
+      alignItems="center"
+    >
+      <Typography 
+        sx={{ mt: 4, mb: 2 }} 
+        variant="h4" 
+        component="div">
+        All My Events
+      </Typography>
+      {addButton}
+      <List>
+        {generate(
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Single-line item"
+            />
+            {editButton}
+          </ListItem>,
+        )}
+        
+      </List>
+    </Grid>
   );
 }
