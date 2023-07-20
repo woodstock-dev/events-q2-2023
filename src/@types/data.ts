@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { useContext,createContext } from "react"
+import { useContext, createContext } from "react"
 import * as React from 'react'
 
 /**
@@ -24,6 +24,8 @@ import * as React from 'react'
  * 
  * reducers, weak hashmap, userecoilstate, 
  */
+
+
 
 export interface Task {
   id: string
@@ -70,25 +72,39 @@ export const allTasks : Array<Task> = [
   {
     id: '1237',
     start: new Date('2023-08-02T12:00:00'),
-    end: new Date('2023-10-02T13:00:00'),
-    name: 'Example 2',
+    end: new Date('2025-10-02T13:00:00'),
+    name: 'Example 4',
     description: 'Something else cool'
   },
   {
     id: '1238',
     start: new Date('2023-08-02T12:00:00'),
-    end: new Date('2023-10-02T13:00:00'),
-    name: 'Example 2',
+    end: new Date('2023-11-02T13:00:00'),
+    name: 'Example 5',
     description: 'Something else cool'
   },
   {
     id: '1239',
     start: new Date('2023-08-02T12:00:00'),
-    end: new Date('2023-10-02T13:00:00'),
-    name: 'Example 2',
+    end: new Date('2023-12-02T13:00:00'),
+    name: 'Example 6',
     description: 'Something else cool'
   }
- ]
+]
+ 
+export const TaskProvier = ({ children }: { children: React.ReactNode }) => {
+
+  const data = allTasks
+
+  const [task, setTask] = React.useState(data)
+
+  const deleteTask = ({id}: {id: string}) => {
+    if (window.confirm('Are you sure you want to delete')) {
+      setTask(task.filter((item) => data.map((T) => T.id !== T.id)));
+    }
+  };
+}
+
   
  
  

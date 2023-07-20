@@ -62,7 +62,7 @@ const Index = () => {
       >
         Event View Dashboard
         {data.map((T) => (
-          <EventCard />
+          <EventCard task={T} />
         ))}
       </Typography>
     </Container>
