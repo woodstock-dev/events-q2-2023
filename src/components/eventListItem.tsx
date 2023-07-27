@@ -1,35 +1,51 @@
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { TextField, Paper, Grid, Button, Stack } from "@mui/material";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TextField, Button, Stack, Fab, Grid } from "@mui/material";
 import "./eventListItem.css";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Plan } from "../data/sampleData";
+import { useNavigate } from "react-router-dom";
 
-const EventListItem = () => {
+const EventListItem = (props: { plan: Plan }) => {
+  //const sampleData = eventsData;
+  const { name, startDate } = props.plan;
+  const nav = useNavigate();
+  const date = startDate.getMonth() + 1 + "/" + startDate.getDate() + "/" + startDate.getFullYear();
+
   return (
-    <Paper className="list-item" elevation={3}>
-      <Grid container direction="row" justifyContent="space-between" spacing={1}>
-        <Grid item xs={5}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker className="input-item" label="Date" slotProps={{ textField: { size: "small" } }} />
-          </LocalizationProvider>
+    <>
+      <Grid container direction="row" spacing={1} sx={{ ml: 4, mr: 3 }}>
+        <Grid item>
+          <TextField
+            variant="standard"
+            className="input-item"
+            label="Date"
+            value={date}
+            size="small"
+            inputProps={{ readOnly: true }}
+          />
         </Grid>
-        <Grid item xs={5}>
-          <TextField className="input-item event" fullWidth variant="outlined" label="Event" type="text" size="small" />
+        <Grid item>
+          <TextField
+            className="input-item event"
+            value={name}
+            label="Event"
+            fullWidth
+            variant="standard"
+            type="text"
+            size="small"
+            inputProps={{ readOnly: true }}
+          />
         </Grid>
-        <Grid item xs={2}>
-          <Stack direction="row" spacing={-4} className="stack">
-            <Button className="edit-delete" color="secondary">
-            <EditOutlinedIcon fontSize="medium" />
+        <Grid item >
+          <Button variant="contained" color="secondary" size="small" onClick={() => nav('details', {state: props.plan})}>
+            Details
           </Button>
-          <Button className="edit-delete">
-            <DeleteOutlinedIcon fontSize="medium" style={{ color: "#D10000" }} />
-          </Button>
-          </Stack>
         </Grid>
       </Grid>
-    </Paper>
+      <br />
+    </>
   );
 };
 
 export default EventListItem;
+
+//<EditOutlinedIcon fontSize="medium" />

@@ -1,6 +1,7 @@
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { Toolbar, AppBar, Typography, Button, Box } from "@mui/material";
+import logo from "../assets/planIt_icon.png";
 
 //This is a bit overkill for this project, but I wanted to practice
 const navigationLinks = [
@@ -10,10 +11,10 @@ const navigationLinks = [
 ];
 
 const Header = () => {
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const navLinks = navigationLinks.map((item) => (
-    <Button color="secondary" className="nav-links" onClick={() => nav(item.to)}>
+    <Button color="secondary" sx={{fontWeight: "bold"}} onClick={() => nav(item.to)}>
       {item.name}
     </Button>
   ));
@@ -21,10 +22,17 @@ const Header = () => {
   return (
     <AppBar className="header" position="static">
       <Toolbar>
+        <img src={logo} className="logo" width="135px"/>
         <Typography color="secondary" className="header-text" variant="h3" component="div" sx={{ flexGrow: 1 }}>
-          PI
-          <Typography className="header-text" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Plan It
+          P
+          <Typography className="header-text" variant="h4" component="div" sx={{ flexGrow: 1 }}>
+            lan
+          </Typography>
+          <Typography className="header-text i" variant="h3" component="div" sx={{ flexGrow: 1 }}>
+            &nbsp;I
+          </Typography>
+          <Typography className="header-text" variant="h4" component="div" sx={{ flexGrow: 1 }}>
+            t
           </Typography>
         </Typography>
         <Box>{navLinks}</Box>
@@ -34,7 +42,6 @@ const Header = () => {
 };
 
 export default Header;
-
 
 /*const nav = useNavigate() // A react hook
 ...

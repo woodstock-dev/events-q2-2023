@@ -1,14 +1,12 @@
 
-.nav-links {
-  padding: 10px;
-  text-decoration: none;
-  color: #4974a5;
-}
-
 .header-text {
   display: inline;
 }
 
 .header {
   margin-bottom: 25px;
+}
+
+.logo {
+  margin-right: 10px;
 }
