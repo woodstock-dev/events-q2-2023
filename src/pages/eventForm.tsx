@@ -18,8 +18,8 @@ const EventForm = () => {
 
   return (
     <React.Fragment>
+      <div>Test this</div>
       
-      Event Form Page Test
     </React.Fragment>
   )
 }

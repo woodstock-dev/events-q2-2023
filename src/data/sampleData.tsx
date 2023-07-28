@@ -12,16 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React from 'react';
-import {TextField, Container} from "@mui/material";
-
-const Login = () => {
-
-  return (
-    <Container>
-      <TextField id="outlined-basic" label="Username" variant="outlined" />
-    </Container>
-  )
+export interface Event {
+  id: number
+  start: Date
+  end: Date
+  name:  string
+  details?: string
+  address?: Geolocation
 }
 
-export default Login;
+export const sampleData: Event[] = [
+  {id: 1,
+    start: new Date(2023, 8, 1, 12, 0, 0, 0),
+    end: new Date(2023, 8, 1, 1, 0, 0, 0),
+    name: "Meeting",
+  },
+  {
+    id: 2,
+    start: new Date(2023, 8, 2, 12, 0, 0, 0),
+    end: new Date(2023, 8, 2, 1, 0, 0, 0),
+    name: "2nd Task"
+  }
+]
+
