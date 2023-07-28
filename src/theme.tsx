@@ -22,5 +22,8 @@ export const themeOptions: ThemeOptions = {
     secondary: {
       main: '#4974a5',
     },
+    warning: {
+      main: '#b52419'
+    }
   },
 };

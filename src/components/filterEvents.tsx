@@ -19,7 +19,7 @@ import './filterEvents.css'
 const FilterEvents = () => {
   return (
     <>
-      <Typography variant='h6' align="center" sx={{mb:2}}>INTERVAL</Typography>
+      <Typography variant='h6' align="center" sx={{mb:2}}>SEARCH INTERVAL</Typography>
       <Stack direction="row" justifyContent="space-around">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker className="input-item" label="From" slotProps={{ textField: { size: "small" } }} /> 
