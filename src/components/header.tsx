@@ -2,27 +2,34 @@ import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { Toolbar, AppBar, Typography, Button, Box } from "@mui/material";
 import logo from "../assets/planIt_icon.png";
+import { useAuth } from "../hooks/auth";
 
 //This is a bit overkill for this project, but I wanted to practice
-const navigationLinks = [
+/*const navigationLinks = [
   { name: "LOGIN", to: "/" },
   { name: "EVENT LIST", to: "/events" },
   { name: "ADD EVENT", to: "/events/details" },
-];
+];*/
 
 const Header = () => {
   const nav = useNavigate();
+  const auth = useAuth();
 
-  const navLinks = navigationLinks.map((item) => (
+  function handleLogout () {
+    auth.signout(() => console.log("Signing out"));
+    nav("/");
+  }
+
+  /*const navLinks = navigationLinks.map((item) => (
     <Button color="secondary" sx={{fontWeight: "bold"}} onClick={() => nav(item.to)}>
       {item.name}
     </Button>
-  ));
+  ));*/
 
   return (
     <AppBar className="header" position="static">
       <Toolbar>
-        <img src={logo} className="logo" width="135px"/>
+        <img src={logo} className="logo" width="135px" />
         <Typography color="secondary" className="header-text" variant="h3" component="div" sx={{ flexGrow: 1 }}>
           P
           <Typography className="header-text" variant="h4" component="div" sx={{ flexGrow: 1 }}>
@@ -35,7 +42,19 @@ const Header = () => {
             t
           </Typography>
         </Typography>
-        <Box>{navLinks}</Box>
+        <Box>
+          {auth.isAuthenticated() ? (
+            <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={handleLogout}>
+              LOGOUT
+            </Button>
+          ) : null}
+          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/events")}>
+            EVENT LIST
+          </Button>
+          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/events/details")}>
+            ADD EVENT
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );

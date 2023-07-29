@@ -1,6 +1,5 @@
 import { TextField, Button, Stack, Fab, Grid } from "@mui/material";
 import "./eventListItem.css";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Plan } from "../data/sampleData";
 import { useNavigate } from "react-router-dom";
 

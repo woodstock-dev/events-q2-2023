@@ -59,7 +59,7 @@ const EventDetails = () => {
             size="small"
             required
             value={state.name}
-            defaultValue={''}
+            InputProps={{readOnly: false}}
           />
         </Grid>
         <Grid item xs={12}>

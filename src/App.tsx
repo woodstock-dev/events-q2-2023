@@ -3,6 +3,7 @@ import './app.css';
 import Header from './components/header';
 import Footer from './components/footer';
 import { Suspense, lazy } from "react";
+import RequireAuth from "./components/requireAuth";
 const Login = lazy(() => import('./pages/login'));
 const Events = lazy(() => import('./pages/events'));
 
@@ -11,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Suspense><Login /></Suspense>} />
-        <Route path="events/*" element={<Suspense><Events /></Suspense>} />
+        <Route path="events/*" element={<Suspense><RequireAuth><Events /></RequireAuth></Suspense>} />
       </Route>
     </Routes>             
   )
