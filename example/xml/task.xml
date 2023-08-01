@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task id="1234" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="task.xsd">
+  <name>My Task</name>
+  <description>A really super interesting thing to do.</description>
+  <date>2022-08-01</date>
+  <time>12:00:00</time>
+  <notes>
+    This is an example task
+  </notes>
+</task>
