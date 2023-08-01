@@ -22,7 +22,7 @@ const Header = () => {
           {
             (auth.isAuthenticated()) ?
               <React.Fragment>
-                <Button color="inherit" onClick={() => nav('events')}>Events</Button>
+                <Button color="inherit" onClick={() => nav('/tasks')}>Tasks</Button>
                 <Button color="inherit" onClick={() => auth.signout(() => nav('/'))}>Logout</Button>
               </React.Fragment>: <></>
           }

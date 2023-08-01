@@ -1,18 +1,22 @@
 import { Outlet, Route, Routes } from 'react-router-dom'
-import './app.css'
-import Login from './pages/login'
-import Events from './pages/events'
+
 import RequireAuth from './components/requireAuth'
 import { Box } from '@mui/material'
+
+import React from 'react'
 import Header from './components/header'
 import Footer from './components/footer'
+
+const Login = React.lazy(() => import('./pages/login'))
+const Events = React.lazy(() => import('./pages/tasks'))
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<React.Suspense><Layout /></React.Suspense>}>
         <Route index element={<Login />} />
-        <Route path="events/*" element={<RequireAuth><Events /></RequireAuth>} />
+        <Route path="tasks/*" 
+               element={<React.Suspense><RequireAuth><Events /></RequireAuth></React.Suspense>} />
       </Route>
     </Routes>
   )
@@ -20,17 +24,11 @@ function App() {
 
 const Layout = () => {
   return(
-    <Box sx={{
-          m: 0, 
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
+    <Box sx={{ m: 0, display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <main>
-      <Box sx={{flexGrow: 100}}>
+      <Box component="main" sx={{flexGrow: 100}}>
         <Outlet />
       </Box>
-      </main>
       <Footer />
     </Box>)
 }

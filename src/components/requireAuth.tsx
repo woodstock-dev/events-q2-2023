@@ -5,6 +5,7 @@ import React from "react"
 
 const RequireAuth = ({ children }: { children: ReactNode }) => {
   const auth = useAuth()
+
   if (!auth || !auth.user) {
     return(<Navigate to={'/'} />)
   } else {
