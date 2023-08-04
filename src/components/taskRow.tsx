@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { Grid, IconButton } from "@mui/material";
-import { Task } from "../model";
+import { Task } from "../model/task";
 import { Delete, Edit } from "@mui/icons-material";
 
 const TaskRow = ({event}: {event: Task}) => {

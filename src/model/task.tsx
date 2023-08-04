@@ -14,11 +14,12 @@
 
 import { v4 as uuid } from 'uuid';
 
-export interface AuthContextType {
-  user: string | null;
-  isAuthenticated: () => boolean;
-  signin: (user: string, callback: VoidFunction) => void;
-  signout: (callback: VoidFunction) => void;
+export interface TaskContextType {
+  getTasks(): Array<Task>
+  filterTasks(): Array<Task>
+  addTask(task: Task): void
+  updateTask(task: Task): void
+  removeTask(task: Task) : void
 }
 
 export interface Task {
@@ -46,16 +47,7 @@ export const NewTask = (
   }
 }
 
-export interface TaskManager {
-  getTasks(): Array<Task>
-  filterTasks(): Array<Task>
-  addTask(task: Task): void
-  updateTask(task: Task): void
-  removeTask(task: Task) : void
-}
-
-
-export const sampleData: Task[] = [
+export const InitialTaskData: Task[] = [
   NewTask(undefined, 
     'Example 1', 
     'Something cool', 
@@ -69,25 +61,3 @@ export const sampleData: Task[] = [
     new Date('2023-08-02T13:00:00')
   )
 ]
-
-// This is a simple fake authentication provider
-export const FakeAuthProvider = {
-  isAuthenticated: false,
-
-  // Creates a default signin function
-  signin(callback: VoidFunction) {
-    // Sets the authenticated value to true
-    FakeAuthProvider.isAuthenticated = true;
-    // Creates a fake lag time you may find in a normal login
-    setTimeout(callback, 100); // fake async
-  },
-
-  // Creates a fake signout function
-  signout(callback: VoidFunction) {
-    // sets the authentication value to false
-    FakeAuthProvider.isAuthenticated = false;
-
-    // Creates a fake lag time similar to normal log outs
-    setTimeout(callback, 100);
-  },
-};

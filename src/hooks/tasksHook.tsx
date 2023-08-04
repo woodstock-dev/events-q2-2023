@@ -13,9 +13,10 @@
 // limitations under the License.
 
 import React from "react"
-import { TaskContextType } from "../model/task"
+import TaskContext from "../context/taskContext"
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const TaskContext = React.createContext<TaskContextType>(null!)
+const useTasks = () => {
+  return React.useContext(TaskContext)
+}
 
-export default TaskContext
+export default useTasks

@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React from "react"
-import { TaskContextType } from "../model/task"
+export interface AuthContextType {
+  user: string | null;
+  isAuthenticated: () => boolean;
+  signin: (user: string, callback: VoidFunction) => void;
+  signout: (callback: VoidFunction) => void;
+}
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const TaskContext = React.createContext<TaskContextType>(null!)
-
-export default TaskContext
