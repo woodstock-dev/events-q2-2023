@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TextField, FormControl, Grid, Typography } from "@mui/material"
+import { TextField, FormControl, Grid, Typography, Button } from "@mui/material"
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 const Add = () => {
   return(
@@ -25,9 +27,40 @@ const Add = () => {
     >
       <Typography variant="h4">Add New Event</Typography>
       <FormControl>
-        <TextField margin="normal" label="Event Title" color="secondary" focused />
-        <TextField multiline margin="normal" label="Location" color="secondary" focused />
-        <TextField multiline margin="normal" label="Date/Time" color="secondary" focused />
+        <TextField 
+          margin="normal"
+          id="event title"
+          name="event title" 
+          label="Event Title"
+        />
+
+        <TextField 
+          margin="normal" 
+          multiline
+          id="location"
+          name="location" 
+          label="Location"
+        />
+
+        <DatePicker 
+          label="Event Date"
+          sx={{
+            marginBottom: "20px",
+            marginTop: "10px",
+          }}
+        />
+        <TimePicker
+          label="Event Time"
+        />
+
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Add Event
+        </Button>
       </FormControl>
     </Grid>
   )

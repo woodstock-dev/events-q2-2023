@@ -3,6 +3,9 @@ import { lazy, Suspense } from 'react'
 import { Stack } from "@mui/material"
 import Header from "./components/header"
 import Footer from "./components/footer"
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import RequireAuth from './components/requireAuth'
 
 function App() {
   const Events = lazy(() => import('./pages/events'))
@@ -13,7 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Login />} />
-        <Route path="events/*" element={<Events />} />
+        <Route path="events/*" element={<RequireAuth><Events /></RequireAuth>} />
         <Route path="/*" element={<PageNotFound />} />
       </Route>
     </Routes>
@@ -31,7 +34,9 @@ function Layout() {
         <Suspense 
           fallback={<div>Loading...</div>}
         >
-          <Outlet />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Outlet />
+          </LocalizationProvider>
         </Suspense>
       <Footer />
     </Stack>

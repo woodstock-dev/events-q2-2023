@@ -12,62 +12,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as React from 'react';
 import { useNavigate } from "react-router-dom";
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
 import Button from '@mui/material/Button';
+import EventData from '../eventData'
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
-function generate(element: React.ReactElement) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
+
 
 export default function EventPage() {
 
+  const eventsArray = EventData.map(event => (
+    <Button onClick={() => nav("edit")} key={event.id}>{event.title}{event.date}</Button>
+  ))
+
   const nav = useNavigate()
-  const addButton = <Button color="inherit" onClick={() => nav("add")}>Add Event</Button>
-  const editButton = <Button color="inherit" onClick={() => nav("edit")}>Edit</Button>
+  const addButton = <Button 
+    sx={{ mt: 3, mb: 2 }} 
+    variant="contained" 
+    onClick={() => nav("add")}
+    >
+      Add Event
+    </Button>
 
   return (
-    <Grid
-      container
-      display="flex"
-      direction="column" 
-      alignItems="center"
+    <Container 
+      component="main" 
+      maxWidth="xs"
     >
-      <Typography 
-        sx={{ mt: 4, mb: 2 }} 
-        variant="h4" 
-        component="div">
-        All My Events
-      </Typography>
-      {addButton}
-      <List>
-        {generate(
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <FolderIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Single-line item"
-            />
-            {editButton}
-          </ListItem>,
-        )}
-        
-      </List>
-    </Grid>
+      <Box
+          sx={{
+          marginTop: 10,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography 
+          variant="h4">
+          All My Events
+        </Typography>
+        {eventsArray}
+        {addButton}
+      </Box>
+    </Container>
   );
 }

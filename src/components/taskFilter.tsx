@@ -11,19 +11,4 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { createTheme } from '@mui/material/styles'
-import { colors } from '@mui/material'
-// import type {} from '@mui/x-date-pickers/themeAugmentation';
 
-export const theme = createTheme({
-  palette: {
-    primary: {
-      main: colors.grey[900],
-    },
-
-    secondary: {
-      main: colors.cyan[500],
-      contrastText: '#FFFFFF'
-    }
-  }
-})

@@ -13,7 +13,7 @@
 // limitations under the License.
 import { useNavigate } from "react-router-dom";
 import { Button, AppBar, Toolbar, styled, Box, Typography } from '@mui/material'
-
+import { useAuth } from "../hooks/auth"
 
 
 const Header = () => {
@@ -24,13 +24,14 @@ const Header = () => {
   })
 
   const nav = useNavigate() // A react hook
+  const auth = useAuth()
 
   return(
      <AppBar position="static">
         <StyledToolbar>
           <Typography variant="h4"><Typography variant="h4" component="span" color="secondary">TASK</Typography>App</Typography>
           <Box>
-            <Button variant="outlined" color="secondary" onClick={() => nav('/')}>Login</Button>
+            <Button variant="outlined" color="secondary" onClick={() => auth.signout(() => nav('/'))}>Logout</Button>
             <Button color="inherit" onClick={() => nav('events')}>Event Page</Button>
           </Box>
         </StyledToolbar>
