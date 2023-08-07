@@ -12,24 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import EventForm from "./eventForm"
-import EventView from "./eventView"
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom"
+import { useAuth } from "../Context/authModel"
+import { ReactNode } from "react"
+import React from "react"
 
-const Events = ()=> {
-  return(
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-      <Route index element={<EventView/>}/>
-      <Route path='info' element={<EventForm/>}/>
-      </Route>
-    </Routes>
-  );
-};
-
-function Layout(){
-  return(
-    <Outlet/>
-  )
+const RequireAuth = ({ children }: { children: ReactNode }) => {
+  const auth = useAuth()
+  if (!auth || !auth.user) {
+    return(<Navigate to={'/'} />)
+  } else {
+    return(
+      <React.Fragment>{children}</React.Fragment>)
+  }
 }
-export default Events;
+export default RequireAuth

@@ -12,13 +12,64 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React from "react";
+// import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+// import { LocalizationProvider } from '@mui/x-date-pickers';
+// import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+// import {DateRangeCalendar} from '@mui/x-date-pickers-pro/DateRangeCalendar';
 
-const EventView = ()=> {
-  return(
-    <React.Fragment>
-      
-    </React.Fragment>
-  )
+// export default function EventViewProp() {
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDayjs}>
+//       <DemoContainer components={['DateRangeCalendar', 'DateRangeCalendar']}>
+//         <DemoItem label="1 calendar">
+//           <DateRangeCalendar calendars={1} />
+//         </DemoItem>
+//         <DemoItem label="2 calendars">
+//           <DateRangeCalendar calendars={2} />
+//         </DemoItem>
+//       </DemoContainer>
+//     </LocalizationProvider>
+//   );
+// }
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import CommentIcon from '@mui/icons-material/Comment';
+import IconButton from '@mui/material/IconButton';
+import { Grid } from '@mui/material';
+import Typography from '@mui/material/Typography';
+
+export default function GutterlessList() {
+  return (
+    <Grid container
+    position='absolute'
+     top='175px'
+     left='60px'
+    direction='column'
+     alignContent='center'
+    > 
+    <Typography
+    sx={{mt:5, mb:2}}
+    variant='h4'
+    component="div"
+    >
+        Event List
+    </Typography>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+      {[1, 2, 3].map((value) => (
+      <ListItem
+          key={value}
+          disableGutters
+          secondaryAction={
+            <IconButton aria-label="comment">
+              <CommentIcon />
+            </IconButton>
+          }
+        >
+          <ListItemText primary={`Line item ${value}`} />
+        </ListItem>
+      ))}
+    </List>
+    </Grid>
+  );
 }
-export default EventView;

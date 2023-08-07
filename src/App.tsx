@@ -1,30 +1,41 @@
 
-
-
-import React from 'react'
 import './App.css'
 //Components
 import  Login from "./pages/login"
-import EventView from "./pages/eventView"
-import Events from "./pages/events"
-import Eventform from "./pages/eventForm"
-import Eventhook from "./hooks/eventHook"
-import Footer from "./components/footer"
 
+import Events from "./pages/events"
+import Footer from "./components/footer"
 import Header from "./components/header"
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route, Outlet } from 'react-router-dom'
+import React from 'react'
+import { Stack } from '@mui/material'
+import RequireAuth from './components/requireAuth'
 
 function App () {
-  return (<Router>
-       <Header/>
+  return (
         <Routes>
-        <Route path ='/' element = {<Login />} />
-        <Route path = '/'element = {<EventView/>}/>
-        <Route path = '/'element = {<Events/>}/>
-        <Route path = '/'element = {<Eventform/>}/>
-        <Route path = '/'element = {<Eventhook/>}/>
-        <Route path = '/'element = {<Footer/>}/>
+        <Route path ='/' element = {<Layout/>} >
+        <Route index element ={<Login/>}/>
+        <Route path = 'events/*'element = {<React.Suspense><RequireAuth><Events/></RequireAuth></React.Suspense>}/>
+        </Route>
         </Routes>
-    </Router>)
+    )
+}
+function Layout () {
+  return (
+    <Stack
+      sx={{
+        minHeight: '100vh'
+
+      }}>
+      <Header/>
+      <Outlet/>
+      <Footer/>
+    </Stack>
+  )
 }
 export default App
+
+
+
+ /* <Route path = 'eventView' element = {<EventView/>}/> */

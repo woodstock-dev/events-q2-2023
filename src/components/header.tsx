@@ -12,38 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React from "react";
+import { Button } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
+
 
 const Header = ()=> {
+  const nav =useNavigate();
   return(
-    <React.Fragment>
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+          <Typography variant="h6" component="div" sx={{ flexGrow:1 }}>
+            Booking App
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Box>
+          <Button color='inherit'  onClick = {()=>nav('/')}>Login</Button>
+          <Button color='inherit' onClick = {()=>nav('/events/info')}>EventView</Button>
+          <Button color='inherit' onClick = {()=>nav('events')}>Events</Button>
+        </Box>
         </Toolbar>
       </AppBar>
     </Box>
-    </React.Fragment>
   )
 }
 export default Header;

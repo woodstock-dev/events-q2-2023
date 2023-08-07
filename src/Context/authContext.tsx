@@ -12,24 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import EventForm from "./eventForm"
-import EventView from "./eventView"
-import { Routes, Route, Outlet } from "react-router-dom";
+import React from "react";
+import { AuthContextType } from "../hooks/authHook";
 
-const Events = ()=> {
-  return(
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-      <Route index element={<EventView/>}/>
-      <Route path='info' element={<EventForm/>}/>
-      </Route>
-    </Routes>
-  );
-};
-
-function Layout(){
-  return(
-    <Outlet/>
-  )
-}
-export default Events;
+const AuthContext = React.createContext<AuthContextType>(null!)
