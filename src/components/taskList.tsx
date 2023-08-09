@@ -18,10 +18,17 @@ import { useNavigate } from "react-router-dom";
 import { Task } from '../model/task';
 import { getDate, getTime } from "../utils";
 import useTasks from "../hooks/tasksHook";
+import { useEffect, useState } from "react";
 
 const TaskList = () => {
   const nav = useNavigate()
   const taskManager = useTasks()
+
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  useEffect(() => {
+    setTasks(taskManager.getTasks())
+  }, [taskManager])
 
   const handleEdit = (task: Task) => {
     nav('/tasks/update', {state: {task: task}})
@@ -39,7 +46,7 @@ const TaskList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {taskManager.getTasks().map((d) => (
+          {tasks.map((d) => (
             <TableRow key={d.id}>
               <TableCell>
                 {getDate(d.start)}

@@ -12,11 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { Dayjs } from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
 export interface TaskContextType {
   getTasks(): Array<Task>
-  filterTasks(): Array<Task>
+  getStartDate(): Dayjs
+  getEndDate(): Dayjs
+  setStartDate(d: Dayjs) : void
+  setEndDate(d: Dayjs) : void
   addTask(task: Task): void
   updateTask(task: Task): void
   removeTask(task: Task) : void

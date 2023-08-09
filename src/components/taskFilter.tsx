@@ -18,9 +18,12 @@ import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { useNavigate } from "react-router-dom";
 import { NewTask } from "../model/task";
+import useTasks from "../hooks/tasksHook";
+import { Dayjs } from "dayjs";
 
 const TaskFilter = () => {
   const nav = useNavigate()
+  const tasks = useTasks()
   
   const createTask = () => {
     const now = new Date(Date.now())
@@ -33,12 +36,12 @@ const TaskFilter = () => {
       <Grid container spacing={1}>
         <Grid item xs={6} md={3}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker label='Start'/>
+            <DatePicker label='Start' value={tasks.getStartDate()} onChange={(v) => tasks.setStartDate(v as Dayjs)}/>
           </LocalizationProvider>
         </Grid>
         <Grid item xs={6} md={3}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker label='End' onChange={(v) => console.log(v)}/>
+            <DatePicker label='End' value={tasks.getEndDate()} onChange={(v) => tasks.setEndDate(v as Dayjs)}/>
           </LocalizationProvider>
         </Grid>
         <Grid item xs={11} md={5}>
