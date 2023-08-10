@@ -13,8 +13,7 @@
 // limitations under the License.
 import { useNavigate } from "react-router-dom";
 import { Button, AppBar, Toolbar, styled, Box, Typography } from '@mui/material'
-import { useAuth } from "../hooks/auth"
-
+import useAuth from "../hooks/authHook"
 
 const Header = () => {
   const StyledToolbar = styled(Toolbar)({

@@ -5,18 +5,18 @@ import { BrowserRouter } from "react-router-dom"
 import { ThemeProvider } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
 import { theme } from './theme'
-import AuthProvider from './provider/AuthProvider'
+import Auth from './components/auth'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
   <React.StrictMode>
-    <AuthProvider>
+    <Auth>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
             <App />
         </ThemeProvider>
       </BrowserRouter>
-    </AuthProvider>
+    </Auth>
   </React.StrictMode>
 )

@@ -23,9 +23,10 @@ import Box from '@mui/material/Box';
 
 export default function EventPage() {
 
-  const eventsArray = EventData.map(event => (
-    <Button onClick={() => nav("edit")} key={event.id}>{event.title}{event.date}</Button>
-  ))
+  const eventsArray = EventData.map(event => ([
+    <Button onClick={() => nav("edit")} key={event.id}>{event.title}</Button>,
+    <Button onClick={() => nav("edit")} key={event.id}>{event.date}</Button>
+  ]))
 
   const nav = useNavigate()
   const addButton = <Button 
