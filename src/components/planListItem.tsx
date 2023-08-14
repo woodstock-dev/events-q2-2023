@@ -1,9 +1,8 @@
-import { TextField, Button, Stack, Fab, Grid } from "@mui/material";
-import "./eventListItem.css";
-import { Plan } from "../data/sampleData";
+import { TextField, Button, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Plan } from "../model/plan";
 
-const EventListItem = (props: { plan: Plan }) => {
+const PlanListItem = (props: { plan: Plan }) => {
   //const sampleData = eventsData;
   const { name, startDate } = props.plan;
   const nav = useNavigate();
@@ -45,6 +44,6 @@ const EventListItem = (props: { plan: Plan }) => {
   );
 };
 
-export default EventListItem;
+export default PlanListItem;
 
 //<EditOutlinedIcon fontSize="medium" />

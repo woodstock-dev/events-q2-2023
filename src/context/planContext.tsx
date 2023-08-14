@@ -12,22 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { eventsData } from "../data/sampleData"
-import EventListItem from "./eventListItem";
-import FilterEvents from "./filterEvents";
-import { Paper, Typography } from "@mui/material";
-import './eventList.css'
+import React from "react"
+import { PlanContextType } from "../model/plan"
 
-const EventList = () => {
-  const sampleData = eventsData;
-  return (
-    <Paper className="event-list" elevation={3}>
-      <FilterEvents />
-      <br /><br />
-      <Typography variant='h6' align="center" sx={{mb:2}}>SCHEDULED PLANS</Typography>
-      { sampleData.map(d => <EventListItem plan={d} /> )}
-    </Paper>
-  )
-}
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const PlanContext = React.createContext<PlanContextType>(null!)
 
-export default EventList
+export default PlanContext

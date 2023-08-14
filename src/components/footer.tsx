@@ -1,4 +1,3 @@
-import './footer.css';
 import { Toolbar, Typography  } from '@mui/material';
 import CopyrightOutlinedIcon from '@mui/icons-material/CopyrightOutlined';
 

@@ -13,8 +13,17 @@
 // limitations under the License.
 
 import React from "react";
-import { AuthContext } from "./authHook";
+import { AuthContextType } from "../model/authContextType";
 
-export function useAuth() {
-  return React.useContext(AuthContext);
-}
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const AuthContext = React.createContext<AuthContextType>(null!);
+
+export default AuthContext
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+//const EventListContext = React.createContext<EventListManager(null!);
+
+//export default EventListContext;
+
+
+

@@ -12,3 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+export interface AuthContextType {
+  user: string | null;
+  isAuthenticated: () => boolean;
+  signin: (user: string, callback: VoidFunction) => void;
+  signout: (callback: VoidFunction) => void;
+}

@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import { Navigate } from "react-router-dom"
-import { useAuth } from "../hooks/auth"
 import { ReactNode } from "react"
 import React from "react"
+import useAuth from "../hooks/authHook"
 
 const RequireAuth = ({ children }: { children: ReactNode }) => {
   const auth = useAuth()

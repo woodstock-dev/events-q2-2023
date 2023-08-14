@@ -11,16 +11,37 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 import React from "react";
+import { AuthContextType } from "../model/authContextType";
 import AuthContext from "../context/authContext";
 
-const useAuth = () => {
-  return React.useContext(AuthContext);
+
+
+function AuthProvider({ children }: {children: React.ReactNode}) {
+  const [user, setUser] = React.useState<string | null>(null);
+
+
+  const value : AuthContextType = {
+    user: user,
+    signin(newUser: string, callback: VoidFunction){
+      setUser(newUser);
+      callback();
+    },
+    signout(callback: VoidFunction) {
+      setUser(null);
+      callback();
+    },
+    isAuthenticated(): boolean{
+      return user != null;
+    } 
+  }
+
+  return(
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
-export default useAuth;
-
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-//export const AuthContext = React.createContext<AuthContextType>(null!);
-
-
+export default AuthProvider

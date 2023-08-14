@@ -12,27 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export interface Plan {
-  id: string
-  name: string
-  startDate: Date    
-  endDate: Date
-  notes?: string
-  location?: Geolocation
+
+import React from "react"
+import PlanContext from "../context/planContext"
+
+const usePlans = () => {
+  return React.useContext(PlanContext)
 }
 
+export default usePlans
 
-export const eventsData : Array<Plan> = [
-  {
-     id: '0001',
-     name: 'Code Time',
-     startDate: new Date('2023-07-31T09:00:00'),
-     endDate: new Date('2023-07-31T11:30:00')   
-   },
-  {
-    id: '0002',
-    name: 'Code Class',
-    startDate: new Date('2023-07-30T12:00:00'),
-    endDate: new Date('2023-07-30T14:00:00')
-  }
-]

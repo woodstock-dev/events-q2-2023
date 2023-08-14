@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 YOUR NAME HERE
+ * Copyright 2023 Josilyn McGuinness
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,3 +14,8 @@
  * limitations under the License.
  */
 
+ .event-list {
+  max-width: 550px;
+  margin: 25px auto;
+  padding: 10px;
+}

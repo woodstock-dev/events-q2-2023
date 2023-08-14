@@ -6,7 +6,7 @@ import "./main.css";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
 import { themeOptions } from "./theme.tsx";
-import AuthProvider from "./hooks/authHook.tsx";
+import AuthProvider from "./components/auth.tsx";
 
 const theme = createTheme(themeOptions);
 

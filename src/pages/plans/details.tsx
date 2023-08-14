@@ -1,4 +1,4 @@
-import "./eventDetails.css";
+import "./details.css";
 //import Card from '@mui/material/Card';
 //import CardActions from '@mui/material/CardActions';
 //import CardContent from '@mui/material/CardContent';
@@ -8,26 +8,31 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Button, TextField, TextareaAutosize, Grid, Paper } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useLocation } from "react-router-dom";
-import { Plan } from "../data/sampleData";
 import dayjs from "dayjs";
 import { v4 as uuid } from "uuid";
+import { Plan } from "../../model/plan";
 
-const EventDetails = () => {
+const Details = () => {
   const loc = useLocation();
   const ruuid = uuid();
   const now = new Date(Date.now());
   const state = loc.state ? (loc.state as Plan) : ({ id: ruuid, startDate: now, endDate: now, name: "" } as Plan);
   const startDate = dayjs(state.startDate);
+  const endDate = dayjs(state.endDate);
+  let ro = false;
+  if (loc.state) {
+    ro = true;
+  }
 
   function confirmDelete() {
-    window.confirm("Are you sure you want to remove your plan?")
+    window.confirm("Are you sure you want to remove your plan?");
   }
 
   return (
     <Paper className="paper" elevation={3}>
       <Grid container direction="row" justifyContent="space-between" spacing={1}>
         <Grid item xs={12}>
-          <Typography variant="h5" align="center" className="add-event-text">
+          <Typography variant="h5" align="center" className="add-event-text" sx={{ mb: 2 }}>
             Create a Plan
           </Typography>
         </Grid>
@@ -35,17 +40,37 @@ const EventDetails = () => {
           <Grid item xs={6}>
             <TimePicker
               className=" input-item"
-              label="Time"
+              label="Start Time"
               slotProps={{ textField: { size: "small" } }}
               value={startDate}
+              readOnly={ro}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TimePicker
+              className=" input-item"
+              label="End Time"
+              slotProps={{ textField: { size: "small" } }}
+              value={endDate}
+              readOnly={ro}
             />
           </Grid>
           <Grid item xs={6}>
             <DatePicker
               className=" input-item"
-              label="Date"
+              label="Start Date"
               slotProps={{ textField: { size: "small" } }}
               value={startDate}
+              readOnly={ro}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <DatePicker
+              className=" input-item"
+              label="End Date"
+              slotProps={{ textField: { size: "small" } }}
+              value={endDate}
+              readOnly={ro}
             />
           </Grid>
         </LocalizationProvider>
@@ -57,16 +82,27 @@ const EventDetails = () => {
             label="Event"
             type="text"
             size="small"
-            required
-            value={state.name}
-            InputProps={{readOnly: false}}
+            defaultValue={state.name}
+            InputProps={{readOnly: ro}}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField className="input-item" fullWidth variant="outlined" label="Location" type="text" size="small" />
+          <TextField 
+            className="input-item" 
+            fullWidth variant="outlined" 
+            label="Location" 
+            type="text" 
+            size="small"
+            InputProps={{readOnly: ro}} />
         </Grid>
         <Grid item xs={12}>
-          <TextareaAutosize className="input-item" style={{ width: "100%" }} minRows="5" placeholder="Notes" />
+          <TextareaAutosize 
+            className="input-item" 
+            style={{ width: "100%" }} 
+            minRows="5" 
+            placeholder="Notes"
+            readOnly={ro}
+             />
         </Grid>
         <Grid item xs={3}>
           {loc.state ? (
@@ -85,7 +121,7 @@ const EventDetails = () => {
   );
 };
 
-export default EventDetails;
+export default Details;
 
 /*const MyCard = ({children}:{children:ReactNode}) => {
   return(

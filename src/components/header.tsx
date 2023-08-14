@@ -2,7 +2,8 @@ import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { Toolbar, AppBar, Typography, Button, Box } from "@mui/material";
 import logo from "../assets/planIt_icon.png";
-import { useAuth } from "../hooks/auth";
+import useAuth from "../hooks/authHook";
+
 
 //This is a bit overkill for this project, but I wanted to practice
 /*const navigationLinks = [
@@ -48,10 +49,10 @@ const Header = () => {
               LOGOUT
             </Button>
           ) : null}
-          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/events")}>
+          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/plans")}>
             EVENT LIST
           </Button>
-          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/events/details")}>
+          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/plans/details")}>
             ADD EVENT
           </Button>
         </Box>
