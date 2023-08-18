@@ -12,31 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React, {useState} from 'react';
-import {Button, TextField} from "@mui/material";
-import useAuth from '../hooks/auth.tsx';
-import {Navigate} from 'react-router-dom';
+import { Navigate } from "react-router-dom"
+import  useAuth  from "../hooks/auth.tsx"
+import { ReactNode } from "react"
+import React from "react"
 
-const Login = () => {
-  const [user, setUser] = useState('')
+const RequireAuth = ({ children }: { children: ReactNode }) => {
   const auth = useAuth()
-
-  const signedIn = () => {
-    console.log('signed in')
-  }
-
-  if (auth.user) {
-    return(<Navigate to={'/events'} />)
+  if (!auth || !auth.user) {
+    return(<Navigate to={'/'} />)
   } else {
     return(
-      <React.Fragment>
-        <TextField onChange={e => setUser(e.target.value)}/>
-        <Button onClick={() => auth.signin(user, signedIn)}>Login</Button>
-      </React.Fragment>
-    )
+      <React.Fragment>{children}</React.Fragment>)
   }
-  
-  
 }
-
-export default Login;
+export default RequireAuth

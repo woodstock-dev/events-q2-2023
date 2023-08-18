@@ -9,6 +9,7 @@ import Footer from './components/footer.tsx';
 import './app.css'
 import { Routes, Route, Outlet } from "react-router-dom";
 import {Box} from "@mui/material";
+import RequireAuth from './components/requireAuth.tsx';
 
 function App() {
   
@@ -18,7 +19,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<Login />} />
-        <Route path="events/*" element={<React.Suspense><Events /></React.Suspense>} />
+        <Route path="events/*" element={<RequireAuth><React.Suspense><Events /></React.Suspense></RequireAuth>} />
         
       </Route>
     </Routes>
