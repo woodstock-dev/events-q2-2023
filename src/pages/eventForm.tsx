@@ -13,12 +13,47 @@
 // limitations under the License.
 
 import React from 'react';
+import { useForm } from "react-hook-form";
 
 const EventForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    alert(data);
 
+  };
   return (
     <React.Fragment>
-      <div>Test this</div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Username */}
+        <section>
+          <label>Enter username</label>
+          <input
+            type='text'
+            placeholder='username'
+            {...register("username", { required: true })}
+          />
+          {errors.username && <span>Username is required</span>}
+        </section>
+        {/* Age */}
+        <section>
+          <label>Enter age</label>
+          <input
+            type='number'
+            placeholder='age'
+            {...register("age", { required: true })}
+          />
+          {errors.age && <span>Age is required</span>}
+        </section>
+        {/* Submit button */}
+        <section>
+          <input type='submit' />
+        </section>
+      </form>
+    
       
     </React.Fragment>
   )

@@ -15,9 +15,17 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom"
 import {AppBar, Button, Toolbar, Typography} from "@mui/material";
+import useAuth from "../hooks/auth.tsx";
 
 const Header = () => {
-  const nav = useNavigate()
+  const nav = useNavigate();
+  const auth = useAuth();
+
+  function handleSignout () {
+    auth.signout(() => console.log("signed out"));
+    nav("/");
+  }
+
   
    return (
     <React.Fragment>
@@ -28,7 +36,10 @@ const Header = () => {
             <Button color="inherit" onClick={() => nav('Events')}>Events</Button>
             <Button color="inherit" onClick={() => nav('Events/details')}>Event Details</Button>
             <Button color="inherit" onClick={() => nav('Events/add')}>Add Event</Button>
+            {auth.isAuthenticated() ? (
+            <Button color="inherit" onClick={handleSignout}>SignOut</Button>) : null}
           </Typography>
+          
         </AppBar>
       </Toolbar>
     </React.Fragment>
