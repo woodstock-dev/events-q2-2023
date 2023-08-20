@@ -34,7 +34,7 @@ const PlanListItem = (props: { plan: Plan }) => {
           />
         </Grid>
         <Grid item >
-          <Button variant="contained" color="secondary" size="small" onClick={() => nav('details', {state: props.plan})}>
+          <Button variant="contained" color="secondary" size="small" onClick={() => nav('update', {state: props.plan})}>
             Details
           </Button>
         </Grid>

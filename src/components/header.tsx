@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Toolbar, AppBar, Typography, Button, Box } from "@mui/material";
 import logo from "../assets/planIt_icon.png";
 import useAuth from "../hooks/authHook";
-
+import { NewPlan } from "../model/plan";
 
 //This is a bit overkill for this project, but I wanted to practice
 /*const navigationLinks = [
@@ -16,7 +16,7 @@ const Header = () => {
   const nav = useNavigate();
   const auth = useAuth();
 
-  function handleLogout () {
+  function handleLogout() {
     auth.signout(() => console.log("Signing out"));
     nav("/");
   }
@@ -52,7 +52,10 @@ const Header = () => {
           <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/plans")}>
             EVENT LIST
           </Button>
-          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/plans/details")}>
+          <Button
+            color="secondary"
+            sx={{ fontWeight: "bold" }}
+            onClick={() => nav("/plans/add", { state: { plan: NewPlan(undefined, "", new Date(Date.now()), new Date(Date.now())) } })}>
             ADD EVENT
           </Button>
         </Box>
