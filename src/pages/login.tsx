@@ -27,7 +27,7 @@ const Login = () => {
   }
 
   if (auth.user) {
-    return(<Navigate to={'/tasks'} />)
+    return(<Navigate to={'/tasks'}/>)
   } else {
     return(
       <Container maxWidth={'lg'}>

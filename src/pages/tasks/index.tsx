@@ -19,11 +19,12 @@ import { Container } from "@mui/material";
 import TaskFilter from "../../components/taskFilter";
 import TaskList from "../../components/taskList";
 import { Tasks } from "../../components/tasks";
+import RequireAuth from "../../components/requireAuth";
 
 const Index = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/*" element={<Layout />}>
         <Route index element={<TaskPageLayout />} />
         <Route path="create" element={<Form />} />
         <Route path="read" element={<Detail />} />
@@ -46,9 +47,11 @@ const TaskPageLayout = () => {
 
 const Layout = () => {
   return(
-    <Tasks>
-      <Outlet />
-    </Tasks>
+    <RequireAuth>
+      <Tasks>
+        <Outlet />
+      </Tasks>
+    </RequireAuth>
   );
 };
 

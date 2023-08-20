@@ -26,13 +26,13 @@ const theme = createTheme(themeOptions);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Auth>
-        <BrowserRouter>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
-    </Auth>
+    <BrowserRouter>
+      <Auth>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </Auth>
+    </BrowserRouter>
   </React.StrictMode>
 );

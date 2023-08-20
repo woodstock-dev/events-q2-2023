@@ -14,7 +14,6 @@
 
 import { Outlet, Route, Routes } from 'react-router-dom'
 
-import RequireAuth from './components/requireAuth'
 import { Box } from '@mui/material'
 
 import React from 'react'
@@ -30,7 +29,7 @@ function App() {
       <Route path="/" element={<React.Suspense><Layout /></React.Suspense>}>
         <Route index element={<Login />} />
         <Route path="tasks/*" 
-               element={<React.Suspense><RequireAuth><TaskIndex /></RequireAuth></React.Suspense>} />
+               element={<React.Suspense><TaskIndex /></React.Suspense>} />
       </Route>
     </Routes>
   )
