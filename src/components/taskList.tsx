@@ -28,7 +28,7 @@ const TaskList = () => {
 
   useEffect(() => {
     setTasks(taskManager.getTasks())
-  }, [taskManager])
+  }, [])
 
   const handleEdit = (task: Task) => {
     nav('/tasks/update', {state: {task: task}})

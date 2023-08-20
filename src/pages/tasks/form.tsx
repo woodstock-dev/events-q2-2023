@@ -24,6 +24,7 @@ import useTasks from "../../hooks/tasksHook";
 const Form = () => {
   const nav = useNavigate();
   const loc = useLocation();
+  
   const stateEvent = loc.state.task as Task;
   const tasks = useTasks();
 
