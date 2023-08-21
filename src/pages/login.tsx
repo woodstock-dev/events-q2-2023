@@ -20,7 +20,7 @@ const Login = () => {
   const signedIn = () => {
     console.log("signed in");
   };
-  if (auth.user) {
+  if (auth.isAuthenticated()) {
     return <Navigate to={"/plans"} />;
   } else {
     return (

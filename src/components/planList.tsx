@@ -21,7 +21,6 @@ import usePlans from "../hooks/planHook";
 import { useEffect, useState } from "react";
 import { Plan } from "../model/plan";
 
-
 const PlanList = () => {
   const planManager = usePlans()
   const[plans, setPlans] = useState<Plan[]>([])
@@ -41,7 +40,7 @@ const PlanList = () => {
         Scheduled Plans:
       </Typography>}
       {plans.length == 0 ? null : plans.map((d) => (
-        <PlanListItem plan={d} />
+        <PlanListItem key={d['id']} plan={d} />
       ))}
     </Paper>
   );

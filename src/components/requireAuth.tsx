@@ -19,7 +19,7 @@ import useAuth from "../hooks/authHook"
 
 const RequireAuth = ({ children }: { children: ReactNode }) => {
   const auth = useAuth()
-  if (!auth || !auth.user) {
+  if (!auth || !auth.isAuthenticated()) {
     return(<Navigate to={'/'} />)
   } else {
     return(

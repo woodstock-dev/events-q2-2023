@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Plan } from "../model/plan";
 
 const PlanListItem = (props: { plan: Plan }) => {
-  //const sampleData = eventsData;
   const { name, startDate } = props.plan;
   const nav = useNavigate();
   const date = startDate.getMonth() + 1 + "/" + startDate.getDate() + "/" + startDate.getFullYear();
@@ -33,8 +32,12 @@ const PlanListItem = (props: { plan: Plan }) => {
             inputProps={{ readOnly: true }}
           />
         </Grid>
-        <Grid item >
-          <Button variant="contained" color="secondary" size="small" onClick={() => nav('update', {state: props.plan})}>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={() => nav("/plans/update", { state: { plan: props.plan } })}>
             Details
           </Button>
         </Grid>

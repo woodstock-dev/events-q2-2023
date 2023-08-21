@@ -20,7 +20,6 @@ import PlanContext from "../context/planContext";
 const today = new Date();
 export const Plans = ({ children }: { children: React.ReactNode }) => {
 
-  console.log("Why am I here?")
   const [plans, setPlans] = useState<Array<Plan>>(PlansData);
   const [startDate, setStartDate] = useState<Date>(today);
   const [endDate, setEndDate] = useState<Date>(addDays(today, 7));
