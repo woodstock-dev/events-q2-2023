@@ -4,7 +4,6 @@ import { Toolbar, AppBar, Typography, Button, Box } from "@mui/material";
 import logo from "../assets/planIt_icon.png";
 import useAuth from "../hooks/authHook";
 import { NewPlan } from "../model/plan";
-import { useReducer } from "react";
 
 //This is a bit overkill for this project, but I wanted to practice
 /*const navigationLinks = [
@@ -16,7 +15,6 @@ import { useReducer } from "react";
 const Header = () => {
   const nav = useNavigate();
   const auth = useAuth();
-  //const [_, forceUpdate] = useReducer(x => x+1, 0);
 
   function handleLogout() {
     auth.signout(() => console.log("Signing out"));
@@ -24,7 +22,6 @@ const Header = () => {
   }
 
   function handleAddEvent() {
-    //forceUpdate();
     nav("/plans/add", {replace: true, state: {plan: NewPlan(undefined, "", new Date(Date.now()), new Date(Date.now()))} })
   }
   /*const navLinks = navigationLinks.map((item) => (

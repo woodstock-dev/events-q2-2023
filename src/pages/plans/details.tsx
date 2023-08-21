@@ -163,7 +163,7 @@ const Details = ({writable}:  {writable: boolean}) => {
           />
         </Grid>
         <Grid item xs={3}>
-          {loc.state ? (
+          {plan.name != "" ? (
             <Button variant="contained" color="secondary" onClick={confirmDelete}>
               <DeleteOutlineIcon />
             </Button>
