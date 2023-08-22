@@ -12,12 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const Edit = () => {
-  return(
-    <div>
-      <h1>Event Edit</h1>
-    </div>
-  )
-}
+import React from 'react'
+import {eventD} from '../model/eventData'
 
-export default Edit
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const EventContext = React.createContext<eventD>(null!)
+
+export default EventContext
