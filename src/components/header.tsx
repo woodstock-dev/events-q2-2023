@@ -22,7 +22,7 @@ const Header = () => {
   }
 
   function handleAddEvent() {
-    nav("/plans/add", {replace: true, state: {plan: NewPlan(undefined, "", new Date(Date.now()), new Date(Date.now()))} })
+    nav("/plans/add", {replace: true, state: {plan: NewPlan("", undefined, new Date(Date.now()), new Date(Date.now()))} })
   }
   /*const navLinks = navigationLinks.map((item) => (
     <Button color="secondary" sx={{fontWeight: "bold"}} onClick={() => nav(item.to)}>

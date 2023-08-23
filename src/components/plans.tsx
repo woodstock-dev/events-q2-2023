@@ -14,7 +14,7 @@
 
 import { addDays } from 'date-fns';
 import React, { useState } from "react";
-import { Plan, PlanContextType, PlansData } from "../model/plan";
+import { NewPlan, Plan, PlanContextType, PlansData } from "../model/plan";
 import PlanContext from "../context/planContext";
 
 const today = new Date();
@@ -44,13 +44,17 @@ export const Plans = ({ children }: { children: React.ReactNode }) => {
       setPlans([...plans, plan]);
     },
     delete(plan: Plan): void {
-      setPlans([...plans.filter((p) => p.id != plan.id)]);
+      setPlans([...plans.filter(p => p.id != plan.id)]);
+      console.log(plans)
     },
     update(plan: Plan): void {
-      this.delete(plan);
-      this.create(plan);
+      const filteredPlans = plans.filter(p => p.id != plan.id)
+      console.log(plans)
+      filteredPlans.push(plan)
+      setPlans(filteredPlans)
     },
   };
+  console.log(plans)
 
   return <PlanContext.Provider value={value}>{children}</PlanContext.Provider>;
 };

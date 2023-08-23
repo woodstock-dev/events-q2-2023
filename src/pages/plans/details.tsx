@@ -4,40 +4,47 @@ import { LocalizationProvider, TimePicker, DatePicker } from "@mui/x-date-picker
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Button, TextField, TextareaAutosize, Grid, Paper } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { useState } from "react";
 import usePlans from "../../hooks/planHook";
-
+import { v4 as uuid } from 'uuid';
 
 
 const Details = ({writable}:  {writable: boolean}) => {
 
   const planManager = usePlans();
   const loc = useLocation();
+  const nav = useNavigate();
   const [plan, setPlan] = useState(loc.state.plan);
   const [edit, setEdit] = useState(!writable);
-  const buttonAction = plan.name == "" ? "ADD" : edit ? "EDIT" : "UPDATE"
+  const buttonAction = plan.id == undefined ? "ADD" : edit ? "EDIT" : "UPDATE"
 
-  console.log("Name: " + plan.name);
-  console.log(JSON.stringify(loc.state));
-  console.log(JSON.stringify(plan));
+  console.log("ID: " + plan.id)
   function handleButtonClick(action: string) {
     switch(action) {
       case "EDIT":
         setEdit(false)
         break;
       case "ADD":
+        plan.id = uuid();
         planManager.create(plan)
+        nav("/plans")
+        console.log(plan)
         break;
       case "UPDATE":
+        planManager.update(plan)
+        nav("/plans")
         break;
     }
   }
 
 
   function confirmDelete() {
-    window.confirm("Are you sure you want to remove your plan?");
+    if (confirm("Are you sure you want to remove your plan?")) {
+      planManager.delete(plan);
+      nav("/plans")
+    }
   }
 
   const handleStartTimeChange = (event: dayjs.Dayjs | null, context: unknown) => {
@@ -82,13 +89,13 @@ const Details = ({writable}:  {writable: boolean}) => {
       <Grid container direction="row" justifyContent="space-between" spacing={1}>
         <Grid item xs={12}>
           <Typography variant="h5" align="center" className="add-event-text" sx={{ mb: 2 }}>
-            {plan.name != "" && !edit ? "CHANGE THE PLAN" : "PLAN DETAILS"}
+            {plan.id != undefined && !edit ? "CHANGE THE PLAN" : "PLAN DETAILS"}
           </Typography>
         </Grid>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Grid item xs={6}>
             <TimePicker
-              className=" input-item"
+              className="input-item"
               label="Start Time"
               slotProps={{ textField: { size: "small" } }}
               defaultValue={dayjs(plan.startDate)}
@@ -99,7 +106,7 @@ const Details = ({writable}:  {writable: boolean}) => {
           </Grid>
           <Grid item xs={6}>
             <TimePicker
-              className=" input-item"
+              className="input-item"
               label="End Time"
               slotProps={{ textField: { size: "small" } }}
               defaultValue={dayjs(plan.endDate)}
@@ -109,7 +116,7 @@ const Details = ({writable}:  {writable: boolean}) => {
           </Grid>
           <Grid item xs={6}>
             <DatePicker
-              className=" input-item"
+              className="input-item"
               label="Start Date"
               slotProps={{ textField: { size: "small" } }}
               defaultValue={dayjs(plan.startDate)}
@@ -163,7 +170,7 @@ const Details = ({writable}:  {writable: boolean}) => {
           />
         </Grid>
         <Grid item xs={3}>
-          {plan.name != "" ? (
+          {plan.id != undefined ? (
             <Button variant="contained" color="secondary" onClick={confirmDelete}>
               <DeleteOutlineIcon />
             </Button>

@@ -25,8 +25,8 @@ export interface PlanContextType {
 }
 
 export interface Plan {
-  readonly id: string
   name: string
+  id?: string
   startDate: Date    
   endDate: Date
   notes?: string
@@ -46,15 +46,15 @@ export interface Plan {
 
 //Is this like a constructor??????????
 export const NewPlan = (
-  id: string | undefined,
-  name: string, 
+  name: string,
+  id?: string | undefined, 
   startDate?: Date | undefined,
   endDate?: Date | undefined)  : Plan => {
   return {
-    id: (id) ? id : uuid(),
+    name: name,
+    id: (id) ? id : undefined,
     startDate: (startDate) ? startDate : new Date(Date.now()),
     endDate: (endDate) ? endDate : new Date(Date.now()),
-    name: name,
   }
 }
 

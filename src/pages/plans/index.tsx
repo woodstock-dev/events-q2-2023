@@ -9,8 +9,8 @@ const Index = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Suspense><PlanList /></Suspense>} />
-        <Route path="details" element={<Suspense><Details writable={false} /></Suspense>} />
+        <Route index element={<PlanList />} />
+        <Route path="details" element={<Details writable={false} />} />
         <Route path="add"  element={<Details writable={true} />} />
         <Route path="update" element={<Suspense><Details writable={false} /></Suspense>} />
       </Route>
