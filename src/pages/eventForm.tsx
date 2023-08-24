@@ -13,50 +13,40 @@
 // limitations under the License.
 
 import React from 'react';
-import { useForm } from "react-hook-form";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { FormC, FormLabel } from '@mui/material';
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const EventForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
-    alert(data);
-
-  };
+  
+  
   return (
-    <React.Fragment>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Username */}
-        <section>
-          <label>Enter username</label>
-          <input
-            type='text'
-            placeholder='username'
-            {...register("username", { required: true })}
-          />
-          {errors.username && <span>Username is required</span>}
-        </section>
-        {/* Age */}
-        <section>
-          <label>Enter age</label>
-          <input
-            type='number'
-            placeholder='age'
-            {...register("age", { required: true })}
-          />
-          {errors.age && <span>Age is required</span>}
-        </section>
-        {/* Submit button */}
-        <section>
-          <input type='submit' />
-        </section>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <form onSubmit={handleSubmit}>
+        <FormLabel>Event Name</FormLabel>
+        <TextField></TextField>
+        <FormLabel>Start Date</FormLabel>
+        <DateTimePicker />
+        <FormLabel>End Date</FormLabel>
+        <DateTimePicker />
+        <FormLabel>Details</FormLabel>
+        <TextField></TextField>
+        <FormLabel>Address</FormLabel>
+        <TextField></TextField>
+        <Button>Submit</Button>
       </form>
     
-      
-    </React.Fragment>
+    </LocalizationProvider> 
+   
   )
+};
+
+const handleSubmit = (event: Event) => {
+  event.preventDefault();
+  alert("Form Submitted");
 }
 
 export default EventForm;

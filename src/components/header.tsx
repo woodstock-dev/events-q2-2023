@@ -34,8 +34,8 @@ const Header = () => {
           <Typography variant="h6" component="h1">
             <Button color="inherit" onClick={() => nav('/')}>Home</Button>
             <Button color="inherit" onClick={() => nav('Events')}>Events</Button>
-            <Button color="inherit" onClick={() => nav('Events/details')}>Event Details</Button>
-            <Button color="inherit" onClick={() => nav('Events/add')}>Add Event</Button>
+            <Button color="inherit" onClick={() => nav('Events/read/:id')}>Event Details</Button>
+            <Button color="inherit" onClick={() => nav('Events/create')}>Add Event</Button>
             {auth.isAuthenticated() ? (
             <Button color="inherit" onClick={handleSignout}>SignOut</Button>) : null}
           </Typography>
