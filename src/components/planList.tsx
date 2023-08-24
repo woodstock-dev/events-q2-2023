@@ -33,15 +33,16 @@ const PlanList = () => {
     <Paper className="event-list" elevation={3}>
       <PlansFilter />
       <br />
-      <br />
+      <Paper>
       {plans.length == 0 ? <Typography variant="h6" align="center" sx={{ mb: 2}}>
         You Have No Scheduled Plans.<br/>Make Some Plans!
-      </Typography> : <Typography variant="h6" align="center" sx={{ mb: 2 }}>
-        Scheduled Plans:
+      </Typography> : <Typography variant="h6" align="center" sx={{ mb: 2, bgcolor: '#abd1b5'}}>
+        Scheduled Plans
       </Typography>}
       {plans.length == 0 ? null : plans.map((d) => (
         <PlanListItem key={d['id']} plan={d} />
       ))}
+      </Paper>
     </Paper>
   );
 };

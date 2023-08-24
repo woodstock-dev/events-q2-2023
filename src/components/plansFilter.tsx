@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { Typography, Stack, Fab, Container } from "@mui/material";
+import { Typography, Stack, Fab, Paper } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import SearchIcon from "@mui/icons-material/Search";
 import dayjs from "dayjs";
-//import { FieldChangeHandlerContext } from "@mui/x-date-pickers/internals/hooks/useField";
 import usePlans from "../hooks/planHook";
 import { useState } from "react";
 
@@ -29,39 +28,42 @@ const PlansFilter = () => {
     plans.setEndDate(endDateFilter);
     plans.read();
   }
+  const handleStartChange = (d: dayjs.Dayjs | null) => {
+    console.log(d)
+    setStartDateFilter(dayjs(d).toDate())
+  }
+
   return (
-    <Container>
-      <Typography variant="h6" align="center" sx={{ mb: 2 }}>
+    <Paper sx={{pb: 2}}>
+      <Typography variant="h6" align="center" sx={{ mb: 2, bgcolor: '#abd1b5'}}>
         Search Interval
       </Typography>
-      <Stack direction="row">
+      <Stack direction="row" sx={{ pl: 1, pr: 1 }}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             className="input-item"
             label="From"
             slotProps={{ textField: { size: "small" } }}
             sx={{ mr: 2 }}
-            value={endDateFilter < startDateFilter ? dayjs(endDateFilter) : dayjs(plans.getStartDate())}
-            onChange={(d) => setStartDateFilter(dayjs(d).toDate())}
+            value={dayjs(startDateFilter)}
+            onChange={handleStartChange}
           />
           <DatePicker
             className="input-item"
             label="To"
             slotProps={{ textField: { size: "small" } }}
             sx={{ mr: 2 }}
-            value={startDateFilter > plans.getEndDate() ? dayjs(startDateFilter) : dayjs(plans.getEndDate())}
+            value={dayjs(endDateFilter)}
             onChange={(d) => setEndDateFilter(dayjs(d).toDate())}
           />
         </LocalizationProvider>
-        <Fab color="secondary" size="small" sx={{ mr: 2 }}>
+        <Fab color="secondary" size="small">
           <SearchIcon onClick={handleSearch} />
         </Fab>
       </Stack>
-    </Container>
+    </Paper>
   );
 };
 
 export default PlansFilter;
 
-
-//endDateFilter < plans.getStartDate() ? dayjs(endDateFilter) : dayjs(plans.getStartDate())

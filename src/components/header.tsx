@@ -1,3 +1,17 @@
+// Copyright 2023 Josilyn McGuinness
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { Toolbar, AppBar, Typography, Button, Box } from "@mui/material";
@@ -22,7 +36,10 @@ const Header = () => {
   }
 
   function handleAddEvent() {
-    nav("/plans/add", {replace: true, state: {plan: NewPlan("", undefined, new Date(Date.now()), new Date(Date.now()))} })
+    nav("/plans/add", {
+      replace: true,
+      state: { plan: NewPlan("", undefined, new Date(Date.now()), new Date(Date.now())) },
+    });
   }
   /*const navLinks = navigationLinks.map((item) => (
     <Button color="secondary" sx={{fontWeight: "bold"}} onClick={() => nav(item.to)}>
@@ -53,13 +70,10 @@ const Header = () => {
             </Button>
           ) : null}
           <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={() => nav("/plans")}>
-            EVENT LIST
+            PLAN LIST
           </Button>
-          <Button
-            color="secondary"
-            sx={{ fontWeight: "bold" }}
-            onClick={handleAddEvent}>
-            ADD EVENT
+          <Button color="secondary" sx={{ fontWeight: "bold" }} onClick={handleAddEvent}>
+            ADD A PLAN
           </Button>
         </Box>
       </Toolbar>

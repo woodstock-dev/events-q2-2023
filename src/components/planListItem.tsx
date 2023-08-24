@@ -37,6 +37,7 @@ const PlanListItem = (props: { plan: Plan }) => {
             variant="contained"
             color="secondary"
             size="small"
+            sx={{mt: 1.5, ml: 2}}
             onClick={() => nav("/plans/update", { state: { plan: props.plan } })}>
             Details
           </Button>

@@ -45,16 +45,13 @@ export const Plans = ({ children }: { children: React.ReactNode }) => {
     },
     delete(plan: Plan): void {
       setPlans([...plans.filter(p => p.id != plan.id)]);
-      console.log(plans)
     },
     update(plan: Plan): void {
       const filteredPlans = plans.filter(p => p.id != plan.id)
-      console.log(plans)
       filteredPlans.push(plan)
       setPlans(filteredPlans)
     },
   };
-  console.log(plans)
 
   return <PlanContext.Provider value={value}>{children}</PlanContext.Provider>;
 };
