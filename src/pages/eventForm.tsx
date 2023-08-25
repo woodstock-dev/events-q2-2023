@@ -12,32 +12,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React from 'react';
+import {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { FormC, FormLabel } from '@mui/material';
+import { FormControl, FormLabel } from '@mui/material';
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useLocation, useNavigate } from "react-router-dom";
+import dayjs from "dayjs"
+import  {v4 as uuid}  from 'uuid';
 
 const EventForm = () => {
-  
+  const todayStart = dayjs();
+  const todayEnd = dayjs().add(1, 'minute');
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [startDate, setStartDate] = useState(dayjs);
+  const [endDate, setEndDate]= useState(dayjs);
   
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <form onSubmit={handleSubmit}>
+      <FormControl onSubmit={handleSubmit}>
         <FormLabel>Event Name</FormLabel>
-        <TextField></TextField>
+        <TextField required></TextField>
         <FormLabel>Start Date</FormLabel>
-        <DateTimePicker />
+        <DateTimePicker
+          defaultValue={todayStart}
+          disablePast
+        />
         <FormLabel>End Date</FormLabel>
-        <DateTimePicker />
+        <DateTimePicker 
+          defaultValue={todayEnd}
+          disablePast
+        />
         <FormLabel>Details</FormLabel>
-        <TextField></TextField>
+        <TextField required></TextField>
         <FormLabel>Address</FormLabel>
         <TextField></TextField>
         <Button>Submit</Button>
-      </form>
+      </FormControl>
     
     </LocalizationProvider> 
    
@@ -46,7 +59,18 @@ const EventForm = () => {
 
 const handleSubmit = (event: Event) => {
   event.preventDefault();
-  alert("Form Submitted");
+  generateIdClick();
+  alert("Event Submitted");
+  console.log(event);
+}
+
+const uuidV4 = () => {
+  const newUuid = uuid()
+  setImmediate(newUuid)
+}
+
+const generateIdClick = () => {
+  uuidV4()
 }
 
 export default EventForm;
