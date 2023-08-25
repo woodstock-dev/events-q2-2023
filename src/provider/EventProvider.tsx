@@ -12,9 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import React from "react";
-import { EventContext } from "../provider/EventProvider";
+import React from 'react';
 
-export default function useEvent() {
-  return React.useContext(EventContext);
+export interface EventContextType {
+  id: number
+  start: Date
+  end: Date
+  name:  string
+  details?: string
+  address?: Geolocation
 }
+
+export const EventContext = React.createContext<EventContextType>(null!);
+
+
+

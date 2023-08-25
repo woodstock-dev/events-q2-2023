@@ -19,36 +19,66 @@ import { FormControl, FormLabel } from '@mui/material';
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useLocation, useNavigate } from "react-router-dom";
-import dayjs from "dayjs"
+import dayjs, {Dayjs} from "dayjs"
 import  {v4 as uuid}  from 'uuid';
 
 const EventForm = () => {
   const todayStart = dayjs();
   const todayEnd = dayjs().add(1, 'minute');
-  const [id, setId] = useState("");
+  const [id, setId] = useState(uuid());
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState(dayjs);
-  const [endDate, setEndDate]= useState(dayjs);
+  const [endDate, setEndDate] = useState(dayjs);
+  const [details, setDetails] = useState("");
+  const [address, setAddress] = useState("");
   
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <FormControl onSubmit={handleSubmit}>
         <FormLabel>Event Name</FormLabel>
-        <TextField required></TextField>
+        <TextField 
+          required
+          id="name"
+          name="name"
+          value={name}
+          placeholder="Event Name"
+          onChange={(event) =>
+            setName(event.target.value)}>
+        </TextField>
         <FormLabel>Start Date</FormLabel>
         <DateTimePicker
           defaultValue={todayStart}
           disablePast
+          value={startDate}
+          onChange={(event) =>
+            setStartDate(event as Dayjs)}
         />
         <FormLabel>End Date</FormLabel>
         <DateTimePicker 
           defaultValue={todayEnd}
           disablePast
+          value={endDate}
+          onChange={(event) =>
+            setEndDate(event as Dayjs)}
         />
         <FormLabel>Details</FormLabel>
-        <TextField required></TextField>
+        <TextField 
+        id="details"
+        name="details"
+        value={details}
+        placeholder="Details"
+        onChange={(event) =>
+          setDetails(event.target.value)}>
+        </TextField>
         <FormLabel>Address</FormLabel>
-        <TextField></TextField>
+        <TextField
+        id="address"
+        name="address"
+        value={address}
+        placeholder="Address"
+        onChange={(event) =>
+          setAddress(event.target.value)}>
+        </TextField>
         <Button>Submit</Button>
       </FormControl>
     
@@ -59,18 +89,9 @@ const EventForm = () => {
 
 const handleSubmit = (event: Event) => {
   event.preventDefault();
-  generateIdClick();
   alert("Event Submitted");
   console.log(event);
 }
 
-const uuidV4 = () => {
-  const newUuid = uuid()
-  setImmediate(newUuid)
-}
-
-const generateIdClick = () => {
-  uuidV4()
-}
 
 export default EventForm;
