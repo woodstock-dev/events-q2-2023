@@ -27,9 +27,9 @@ const Index = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<PlanList />} />
-        <Route path="details" element={<Details writable={false} />} />
-        <Route path="add"  element={<Details writable={true} />} />
-        <Route path="update" element={<Suspense><Details writable={false} /></Suspense>} />
+        <Route path="details" element={<Suspense key="details"><Details writable={false} /></Suspense>} />
+        <Route path="add"  element={<Suspense key="add"><Details writable={true} /></Suspense>} />
+        <Route path="update" element={<Suspense key="update"><Details writable={false} /></Suspense>} />
       </Route>
     </Routes>
   );

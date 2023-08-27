@@ -12,30 +12,55 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { Typography, Stack, Fab, Paper } from "@mui/material";
+import { Typography, Stack, Fab, Paper, Snackbar } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import SearchIcon from "@mui/icons-material/Search";
 import dayjs from "dayjs";
 import usePlans from "../hooks/planHook";
 import { useState } from "react";
+import React from "react";
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const PlansFilter = () => {
-  const [startDateFilter, setStartDateFilter] = useState<Date>(new Date());
-  const [endDateFilter, setEndDateFilter] = useState<Date>(new Date());
+  const date = new Date()
+  const addDays = (date: Date, days: number): Date => {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  };
+  const [startDateFilter, setStartDateFilter] = useState<Date>(date);
+  const [endDateFilter, setEndDateFilter] = useState<Date>(addDays(date, 7));
+  const [open, setOpen] = useState(false);
   const plans = usePlans();
+
   function handleSearch() {
+    if(endDateFilter < startDateFilter){
+      setOpen(true);
+    }else{
     plans.setStartDate(startDateFilter);
     plans.setEndDate(endDateFilter);
     plans.read();
-  }
+  }}
   const handleStartChange = (d: dayjs.Dayjs | null) => {
-    console.log(d)
-    setStartDateFilter(dayjs(d).toDate())
-  }
+    setStartDateFilter(dayjs(d).toDate());
+  };
 
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  }
   return (
-    <Paper sx={{pb: 2}}>
-      <Typography variant="h6" align="center" sx={{ mb: 2, bgcolor: '#abd1b5'}}>
+    <Paper sx={{ pb: 2 }}>
+      <Typography variant="h6" align="center" sx={{ mb: 2, bgcolor: "#abd1b5" }}>
         Search Interval
       </Typography>
       <Stack direction="row" sx={{ pl: 1, pr: 1 }}>
@@ -60,10 +85,14 @@ const PlansFilter = () => {
         <Fab color="secondary" size="small">
           <SearchIcon onClick={handleSearch} />
         </Fab>
+        <Snackbar anchorOrigin={{horizontal: "center", vertical: "top"}} open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            End date must be later than start date.
+          </Alert>
+        </Snackbar>
       </Stack>
     </Paper>
   );
 };
 
 export default PlansFilter;
-

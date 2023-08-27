@@ -33,7 +33,7 @@ import {
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import usePlans from "../../hooks/planHook";
 import { v4 as uuid } from "uuid";
 import { TransitionProps } from "@mui/material/transitions";
@@ -48,6 +48,7 @@ const Transition = forwardRef(function Transition(
 });
 
 const Details = ({ writable }: { writable: boolean }) => {
+  
   const planManager = usePlans();
   const loc = useLocation();
   const nav = useNavigate();
@@ -72,6 +73,11 @@ const Details = ({ writable }: { writable: boolean }) => {
     }
   }
 
+  useEffect(() => {
+    console.log(JSON.stringify(plan))
+  }, [plan])
+
+  //state variable for showing confirm delete box
   const [open, setOpen] = useState(false);
 
   const handleConfirmDeleteOpen = () => {
@@ -82,6 +88,7 @@ const Details = ({ writable }: { writable: boolean }) => {
     setOpen(false);
   };
 
+  //if delete is confirmed, call delete function, return to the plan list, and close the delete window
   const handleDeleteClose = () => {
     planManager.delete(plan);
     nav("/plans");
@@ -95,25 +102,36 @@ const Details = ({ writable }: { writable: boolean }) => {
     }
   }*/
 
-  const handleStartTimeChange = (event: dayjs.Dayjs | null, context: unknown) => {
+  const handleStartTimeChange = (event: dayjs.Dayjs | null) => {
+    if (event != null) {
+      const d = dayjs(plan.startDate)
+
+      d.set("hour", event.get("hour"))
+       .set("minute", event.get("minute"))
+
+      const nd = d.toDate()
+      console.log(`Start Date Observed: ${nd}`)
+      setPlan({...plan, startDate: nd})
+    }
+  };
+
+  const handleEndTimeChange = (event: dayjs.Dayjs | null) => {
+    if (event != null) {
+      const d = dayjs(plan.endDate)
+      console.log(`End Date Observed: ${d}`)
+      d.set("hour", event.get("hour"))
+      d.set("minute", event.get("minute"))
+      setPlan({...plan, endDate: d.toDate()})
+    }
+  };
+
+  const handleStartDateChange = (event: dayjs.Dayjs | null) => {
     if (event != null) {
       setPlan({ ...plan, startDate: event.toDate() });
     }
   };
 
-  const handleEndTimeChange = (event: dayjs.Dayjs | null, context: unknown) => {
-    if (event != null) {
-      setPlan({ ...plan, endDate: event.toDate() });
-    }
-  };
-
-  const handleStartDateChange = (event: dayjs.Dayjs | null, context: unknown) => {
-    if (event != null) {
-      setPlan({ ...plan, startDate: event.toDate() });
-    }
-  };
-
-  const handleEndDateChange = (event: dayjs.Dayjs | null, context: unknown) => {
+  const handleEndDateChange = (event: dayjs.Dayjs | null) => {
     if (event != null) {
       setPlan({ ...plan, endDate: event.toDate() });
     }
@@ -122,6 +140,7 @@ const Details = ({ writable }: { writable: boolean }) => {
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (event != null) {
       setPlan({ ...plan, name: event.target.value });
+      console.log(plan.name)
     }
   };
 
@@ -132,11 +151,11 @@ const Details = ({ writable }: { writable: boolean }) => {
   };
 
   return (
-    <Paper className="paper" elevation={3} style={{padding: 0}}>
+    <Paper className="paper" elevation={3} style={{ padding: 0 }}>
       <Typography variant="h6" align="center" className="add-event-text" sx={{ mb: 3, bgcolor: "#abd1b5" }}>
         {plan.id != undefined && !edit ? "CHANGE THE PLAN" : "PLAN DETAILS"}
       </Typography>
-      <Grid container direction="row" justifyContent="space-between" style={{padding: 15, paddingTop: 5}} spacing={1}>
+      <Grid container direction="row" justifyContent="space-between" style={{ padding: 15, paddingTop: 5 }} spacing={1}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Grid item xs={6}>
             <TimePicker
@@ -162,6 +181,7 @@ const Details = ({ writable }: { writable: boolean }) => {
             <DatePicker
               className="input-item"
               label="Start Date"
+              disablePast
               slotProps={{ textField: { size: "small" } }}
               defaultValue={dayjs(plan.startDate)}
               readOnly={edit}
@@ -172,6 +192,7 @@ const Details = ({ writable }: { writable: boolean }) => {
             <DatePicker
               className=" input-item"
               label="End Date"
+              disablePast
               slotProps={{ textField: { size: "small" } }}
               defaultValue={dayjs(plan.endDate)}
               readOnly={edit}

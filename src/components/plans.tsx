@@ -14,7 +14,7 @@
 
 import { addDays } from 'date-fns';
 import React, { useState } from "react";
-import { NewPlan, Plan, PlanContextType, PlansData } from "../model/plan";
+import { Plan, PlanContextType, PlansData } from "../model/plan";
 import PlanContext from "../context/planContext";
 
 const today = new Date();
