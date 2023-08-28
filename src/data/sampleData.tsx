@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { Dayjs } from "dayjs"
+
 export interface Event {
   id: number
-  start: Date
-  end: Date
+  start: Dayjs
+  end: Dayjs
   name:  string
   details?: string
-  address?: Geolocation
+  address?: string
 }
 
 export const sampleData: Event[] = [

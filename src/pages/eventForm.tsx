@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import React from 'react';
 import {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -23,18 +24,28 @@ import dayjs, {Dayjs} from "dayjs"
 import  {v4 as uuid}  from 'uuid';
 
 const EventForm = () => {
-  const todayStart = dayjs();
-  const todayEnd = dayjs().add(1, 'minute');
+  const todayStart = dayjs().add(5, 'minute');
+  const todayEnd = dayjs().add(10, 'minute');
   const [id, setId] = useState(uuid());
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState(dayjs);
   const [endDate, setEndDate] = useState(dayjs);
   const [details, setDetails] = useState("");
   const [address, setAddress] = useState("");
+
+  const handleSubmit = (event: Event | null) => {
+    event.preventDefault();
+    setId(uuid());
+    console.log(id, name, startDate, endDate, details, address);
+    alert("Event Submitted");
+    
+  }
+
+
   
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <FormControl onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormLabel>Event Name</FormLabel>
         <TextField 
           required
@@ -79,19 +90,15 @@ const EventForm = () => {
         onChange={(event) =>
           setAddress(event.target.value)}>
         </TextField>
-        <Button>Submit</Button>
-      </FormControl>
+        <Button variant="outlined" color="secondary" type="submit">Submit</Button>
+      </form>
     
     </LocalizationProvider> 
    
   )
 };
 
-const handleSubmit = (event: Event) => {
-  event.preventDefault();
-  alert("Event Submitted");
-  console.log(event);
-}
+
 
 
 export default EventForm;
