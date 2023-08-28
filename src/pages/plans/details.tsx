@@ -74,7 +74,7 @@ const Details = ({ writable }: { writable: boolean }) => {
   }
 
   useEffect(() => {
-    console.log(JSON.stringify(plan))
+    console.log(`Current Plan: ${JSON.stringify(plan)}`)
   }, [plan])
 
   //state variable for showing confirm delete box
@@ -102,45 +102,62 @@ const Details = ({ writable }: { writable: boolean }) => {
     }
   }*/
 
-  const handleStartTimeChange = (event: dayjs.Dayjs | null) => {
-    if (event != null) {
-      const d = dayjs(plan.startDate)
 
-      d.set("hour", event.get("hour"))
-       .set("minute", event.get("minute"))
+  // CHanged the word from event to value
+  // changed d from const to let
+  // added the d = te set to the new value
+  // removed the extra variable
+  const handleStartTimeChange = (value: dayjs.Dayjs | null) => {
+    if (value != null) {
+      let d = dayjs(plan.startDate)
 
-      const nd = d.toDate()
-      console.log(`Start Date Observed: ${nd}`)
-      setPlan({...plan, startDate: nd})
+      d = d.set("hour", value.get("hour"))
+           .set("minute", value.get("minute"))
+           .set("second", 0)
+
+      setPlan({...plan, startDate: d.toDate()})
     }
   };
 
-  const handleEndTimeChange = (event: dayjs.Dayjs | null) => {
-    if (event != null) {
-      const d = dayjs(plan.endDate)
-      console.log(`End Date Observed: ${d}`)
-      d.set("hour", event.get("hour"))
-      d.set("minute", event.get("minute"))
+  const handleEndTimeChange = (value: dayjs.Dayjs | null) => {
+    if (value != null) {
+      let d = dayjs(plan.endDate)
+
+      d = d.set("hour", value.get("hour"))
+           .set("minute", value.get("minute"))
+           .set("second", 0)
+
       setPlan({...plan, endDate: d.toDate()})
     }
   };
 
-  const handleStartDateChange = (event: dayjs.Dayjs | null) => {
-    if (event != null) {
-      setPlan({ ...plan, startDate: event.toDate() });
+  const handleStartDateChange = (value: dayjs.Dayjs | null) => {
+    if (value != null) {
+      let d = dayjs(plan.startDate)
+
+      d = d.set("day", value.get("day"))
+           .set("month", value.get("month"))
+           .set("year", value.get("year"))
+
+      setPlan({ ...plan, startDate: d.toDate() });
     }
   };
 
-  const handleEndDateChange = (event: dayjs.Dayjs | null) => {
-    if (event != null) {
-      setPlan({ ...plan, endDate: event.toDate() });
+  const handleEndDateChange = (value: dayjs.Dayjs | null) => {
+    if (value != null) {
+      let d = dayjs(plan.startDate)
+
+      d = d.set("day", value.get("day"))
+           .set("month", value.get("month"))
+           .set("year", value.get("year"))
+           
+      setPlan({ ...plan, startDate: d.toDate() });
     }
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (event != null) {
       setPlan({ ...plan, name: event.target.value });
-      console.log(plan.name)
     }
   };
 
