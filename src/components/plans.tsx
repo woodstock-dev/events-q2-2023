@@ -37,6 +37,24 @@ export const Plans = ({ children }: { children: React.ReactNode }) => {
     getEndDate: function (): Date {
       return endDate
     },
+    selectTime(time: Date, plan: Plan): Date {
+        const t = plan.startDate
+        const hours = time.getHours()
+        const minutes = time.getMinutes()
+        t.setHours(hours)
+        t.setMinutes(minutes)
+      return t
+    },
+    selectDate(date: Date, plan: Plan): Date {
+      const d = plan.startDate
+      const year = date.getFullYear()
+      const month = date.getMonth()
+      const day = date.getDate()
+      d.setFullYear(year)
+      d.setMonth(month)
+      d.setDate(day)
+      return d;
+    },
     read(): Plan[] {
       return plans.filter(e => e.startDate >= startDate && e.endDate<= endDate);
     },

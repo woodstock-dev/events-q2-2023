@@ -37,7 +37,9 @@ import { forwardRef, useEffect, useState } from "react";
 import usePlans from "../../hooks/planHook";
 import { v4 as uuid } from "uuid";
 import { TransitionProps } from "@mui/material/transitions";
+import { selectDate, selectTime } from "../../utilities/dateFunctions";
 
+//Adds the slide effect for the confirm delete box (Dialog MUI Component)
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>;
@@ -95,63 +97,31 @@ const Details = ({ writable }: { writable: boolean }) => {
     setOpen(false);
   };
 
-  /*function confirmDelete() {
-    if (confirm("Are you sure you want to remove your plan?")) {
-      planManager.delete(plan);
-      nav("/plans");
-    }
-  }*/
-
-
-  // CHanged the word from event to value
-  // changed d from const to let
-  // added the d = te set to the new value
-  // removed the extra variable
   const handleStartTimeChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      let d = dayjs(plan.startDate)
-
-      d = d.set("hour", value.get("hour"))
-           .set("minute", value.get("minute"))
-           .set("second", 0)
-
-      setPlan({...plan, startDate: d.toDate()})
+      const time = selectTime(value.toDate(), plan.startDate)
+      setPlan({...plan, startDate: time})
     }
   };
 
   const handleEndTimeChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      let d = dayjs(plan.endDate)
-
-      d = d.set("hour", value.get("hour"))
-           .set("minute", value.get("minute"))
-           .set("second", 0)
-
-      setPlan({...plan, endDate: d.toDate()})
+      const time = selectTime(value.toDate(), plan.endDate)
+      setPlan({...plan, endDate: time})
     }
   };
 
   const handleStartDateChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      let d = dayjs(plan.startDate)
-
-      d = d.set("day", value.get("day"))
-           .set("month", value.get("month"))
-           .set("year", value.get("year"))
-
-      setPlan({ ...plan, startDate: d.toDate() });
+      const date = selectDate(value.toDate(), plan.startDate)
+      setPlan({...plan, startDate: date})
     }
   };
 
   const handleEndDateChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      let d = dayjs(plan.startDate)
-
-      d = d.set("day", value.get("day"))
-           .set("month", value.get("month"))
-           .set("year", value.get("year"))
-           
-      setPlan({ ...plan, startDate: d.toDate() });
+      const date = selectDate(value.toDate(), plan.endDate)
+      setPlan({...plan, endDate: date})
     }
   };
 
