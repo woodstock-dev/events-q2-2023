@@ -8,7 +8,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import RequireAuth from './components/requireAuth'
 
 function App() {
-  const Events = lazy(() => import('./pages/events'))
+  const Events = lazy(() => import('./pages/eventsRouter'))
   const Login = lazy(() => import('./pages/login'))
   const PageNotFound = lazy(() => import('./pages/notFound'))
 

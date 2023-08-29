@@ -16,14 +16,16 @@ import { TextField, FormControl, Grid, Typography, Button } from "@mui/material"
 import dayjs from "dayjs";
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 
 const Form = () => {
   const location = useLocation();
   const locObject = location.state.event
 
-  console.log(locObject)
-
+  const [detail, setDetail] = useState(locObject)
+  
+  console.log(detail)
 
   return(
     <Grid
@@ -37,10 +39,14 @@ const Form = () => {
       <FormControl>
         <TextField 
           margin="normal"
-          id="event title"
-          name="event title" 
+          id="title"
+          name="title" 
           label="Event Title"
           defaultValue={locObject.title}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setDetail({...detail, title: event.target.value});
+            console.log(`detail: ${detail}`)
+          }}
         />
 
         <TextField 
