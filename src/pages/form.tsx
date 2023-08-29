@@ -13,10 +13,18 @@
 // limitations under the License.
 
 import { TextField, FormControl, Grid, Typography, Button } from "@mui/material"
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import dayjs from "dayjs";
+import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
+import { useLocation } from "react-router-dom";
 
-const Add = () => {
+
+const Form = () => {
+  const location = useLocation();
+  const locObject = location.state.event
+
+  console.log(locObject)
+
+
   return(
     <Grid
       container
@@ -25,13 +33,14 @@ const Add = () => {
       direction="column"
       alignItems="center"
     >
-      <Typography variant="h4">Add New Event</Typography>
+      <Typography variant="h4">Event Information</Typography>
       <FormControl>
         <TextField 
           margin="normal"
           id="event title"
           name="event title" 
           label="Event Title"
+          defaultValue={locObject.title}
         />
 
         <TextField 
@@ -40,17 +49,13 @@ const Add = () => {
           id="location"
           name="location" 
           label="Location"
+          defaultValue={locObject.location}
         />
 
-        <DatePicker 
-          label="Event Date"
-          sx={{
-            marginBottom: "20px",
-            marginTop: "10px",
-          }}
-        />
-        <TimePicker
-          label="Event Time"
+        <DateTimeField 
+          name="date"
+          label="Date"
+          defaultValue={dayjs(locObject.date)} 
         />
 
         <Button
@@ -66,4 +71,4 @@ const Add = () => {
   )
 }
 
-export default Add
+export default Form

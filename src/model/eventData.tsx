@@ -19,7 +19,7 @@ const EventData: eventD[] =
     { 
       id: 3,
       title: "go to bed",
-      date: new Date('2023-09-14T8:00:00'),
+      date: new Date('2023-09-14T08:00:00'),
     },
   ]
 

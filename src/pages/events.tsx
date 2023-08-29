@@ -2,17 +2,16 @@ import { Routes, Route, Outlet } from "react-router-dom"
 import { lazy, Suspense } from 'react'
 
 const Events = () => {
-  const Add = lazy(() => import('./add'))
-  const EventPage = lazy(() => import('./eventPage'))
+  const Form = lazy(() => import('./form'))
+  const EventPage = lazy(() => import('./eventList'))
   const PageNotFound = lazy(() => import('./notFound'))
-  const Edit = lazy(() => import('./detail'))
 
   return(
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<EventPage />} /> 
-        <Route path="add" element={<Add />} />
-        <Route path="edit" element={<Edit />} />
+        <Route path="add" element={<Form />} />
+        <Route path="edit" element={<Form />} />
         <Route path="/*" element={<PageNotFound />} />
       </Route>
     </Routes>
