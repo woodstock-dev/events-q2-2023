@@ -38,6 +38,8 @@ import usePlans from "../../hooks/planHook";
 import { v4 as uuid } from "uuid";
 import { TransitionProps } from "@mui/material/transitions";
 import { selectDate, selectTime } from "../../utilities/dateFunctions";
+import React from "react";
+import Map from "../../components/locationMap";
 
 //Adds the slide effect for the confirm delete box (Dialog MUI Component)
 const Transition = forwardRef(function Transition(
@@ -50,7 +52,6 @@ const Transition = forwardRef(function Transition(
 });
 
 const Details = ({ writable }: { writable: boolean }) => {
-  
   const planManager = usePlans();
   const loc = useLocation();
   const nav = useNavigate();
@@ -75,10 +76,6 @@ const Details = ({ writable }: { writable: boolean }) => {
     }
   }
 
-  useEffect(() => {
-    console.log(`Current Plan: ${JSON.stringify(plan)}`)
-  }, [plan])
-
   //state variable for showing confirm delete box
   const [open, setOpen] = useState(false);
 
@@ -99,29 +96,29 @@ const Details = ({ writable }: { writable: boolean }) => {
 
   const handleStartTimeChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      const time = selectTime(value.toDate(), plan.startDate)
-      setPlan({...plan, startDate: time})
+      const time = selectTime(value.toDate(), plan.startDate);
+      setPlan({ ...plan, startDate: time });
     }
   };
 
   const handleEndTimeChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      const time = selectTime(value.toDate(), plan.endDate)
-      setPlan({...plan, endDate: time})
+      const time = selectTime(value.toDate(), plan.endDate);
+      setPlan({ ...plan, endDate: time });
     }
   };
 
   const handleStartDateChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      const date = selectDate(value.toDate(), plan.startDate)
-      setPlan({...plan, startDate: date})
+      const date = selectDate(value.toDate(), plan.startDate);
+      setPlan({ ...plan, startDate: date });
     }
   };
 
   const handleEndDateChange = (value: dayjs.Dayjs | null) => {
     if (value != null) {
-      const date = selectDate(value.toDate(), plan.endDate)
-      setPlan({...plan, endDate: date})
+      const date = selectDate(value.toDate(), plan.endDate);
+      setPlan({ ...plan, endDate: date });
     }
   };
 
@@ -136,6 +133,13 @@ const Details = ({ writable }: { writable: boolean }) => {
       setPlan({ ...plan, notes: event.target.value });
     }
   };
+
+  const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (event != null) {
+      setPlan({ ...plan, location: event.target.value });
+    }
+  };
+
 
   return (
     <Paper className="paper" elevation={3} style={{ padding: 0 }}>
@@ -206,17 +210,23 @@ const Details = ({ writable }: { writable: boolean }) => {
             fullWidth
             variant="outlined"
             label="Location"
+            defaultValue={plan.location}
             type="text"
             size="small"
             InputProps={{ readOnly: edit }}
+            onChange={handleLocationChange}
           />
+        </Grid>
+        <Grid item xs={12}>
+            <Map />
         </Grid>
         <Grid item xs={12}>
           <TextareaAutosize
             className="input-item"
-            style={{ width: "100%" }}
+            style={{ width: "100%", fontFamily: "Roboto", fontSize: 18 }}
             minRows="5"
             placeholder="Notes"
+            value={plan.notes}
             readOnly={edit}
             onChange={handleNotesChange}
           />

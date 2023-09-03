@@ -29,21 +29,10 @@ export interface Plan {
   startDate: Date    
   endDate: Date
   notes?: string
-  location?: Geolocation
+  location?: string
 }
 
-/*export interface Plan {
-  id?: string
-  start: Date
-  end: Date
-  name: string
-  description?: string
-  address?: Geolocation
-  notes?: string
-}*/
-
-
-//Is this like a constructor??????????
+//Similar to a constructor
 export const NewPlan = (
   name: string,
   id?: string | undefined, 
@@ -61,55 +50,61 @@ export const PlansData : Array<Plan> = [
   {
     id: '0001',
     name: 'Code Class',
-    startDate: new Date('2023-08-14T12:00:00'),
-    endDate: new Date('2023-08-14T13:30:00') 
+    startDate: new Date('2023-09-15T12:00:00'),
+    endDate: new Date('2023-09-15T13:30:00'), 
+    location: "Circuit, 8301 Main St, Woodstock, GA"
   },
   {
     id: '0002',
     name: 'Code Time',
-    startDate: new Date('2023-08-17T09:00:00'),
-    endDate: new Date('2023-08-17T11:30:00') 
+    startDate: new Date('2023-09-17T09:00:00'),
+    endDate: new Date('2023-09-17T11:30:00') 
   },
   {
     id: '0003',
     name: 'Code Class',
-    startDate: new Date('2023-08-18T12:00:00'),
-    endDate: new Date('2023-08-18T13:30:00') 
+    startDate: new Date('2023-09-18T12:00:00'),
+    endDate: new Date('2023-09-18T13:30:00'),
+    location: "Circuit, 8301 Main St, Woodstock, GA" 
   },
   {
     id: '0004',
     name: 'Code Class',
-    startDate: new Date('2023-08-21T12:00:00'),
-    endDate: new Date('2023-08-21T13:30:00') 
+    startDate: new Date('2023-09-22T12:00:00'),
+    endDate: new Date('2023-09-22T13:30:00'),
+    location: "Circuit, 8301 Main St, Woodstock, GA" 
   },
   {
     id: '0005',
     name: 'Code Time',
-    startDate: new Date('2023-08-24T09:00:00'),
-    endDate: new Date('2023-08-24T11:30:00') 
+    startDate: new Date('2023-09-24T09:00:00'),
+    endDate: new Date('2023-09-24T11:30:00') 
   },
   {
     id: '0006',
     name: 'Code Class',
-    startDate: new Date('2023-08-25T12:00:00'),
-    endDate: new Date('2023-08-25T13:30:00') 
+    startDate: new Date('2023-09-25T12:00:00'),
+    endDate: new Date('2023-09-25T13:30:00'),
+    location: "Circuit, 8301 Main St, Woodstock, GA" 
   },
   {
     id: '0007',
     name: 'Code Class',
-    startDate: new Date('2023-08-28T12:00:00'),
-    endDate: new Date('2023-08-28T13:30:00') 
+    startDate: new Date('2023-09-29T12:00:00'),
+    endDate: new Date('2023-09-29T13:30:00'),
+    location: "Circuit, 8301 Main St, Woodstock, GA" 
   },
   {
      id: '0008',
      name: 'Code Time',
-     startDate: new Date('2023-08-31T09:00:00'),
-     endDate: new Date('2023-08-31T11:30:00')   
+     startDate: new Date('2023-09-31T09:00:00'),
+     endDate: new Date('2023-09-31T11:30:00')   
    },
   {
     id: '0009',
     name: 'Code Class',
-    startDate: new Date('2023-09-01T12:00:00'),
-    endDate: new Date('2023-09-01T13:30:00')
+    startDate: new Date('2023-10-02T12:00:00'),
+    endDate: new Date('2023-10-02T13:30:00'),
+    location: "Circuit, 8301 Main St, Woodstock, GA"
   }
 ]

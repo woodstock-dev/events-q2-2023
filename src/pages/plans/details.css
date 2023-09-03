@@ -24,3 +24,8 @@
   margin: 25px auto;
   padding: 25px;
 }
+
+.map-container {
+  width: 150px;
+  height: 150px;
+}
