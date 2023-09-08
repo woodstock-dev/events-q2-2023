@@ -16,7 +16,7 @@ import React from 'react';
 import {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { FormControl, FormLabel } from '@mui/material';
+import { FormLabel } from '@mui/material';
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -24,8 +24,8 @@ import dayjs, {Dayjs} from "dayjs"
 import  {v4 as uuid}  from 'uuid';
 
 const EventForm = () => {
-  const todayStart = dayjs().add(5, 'minute');
-  const todayEnd = dayjs().add(10, 'minute');
+  const todayStart = dayjs();
+  const todayEnd = dayjs().add(1, 'minute');
   const [id, setId] = useState(uuid());
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState(dayjs);
