@@ -12,18 +12,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { useMemo } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
+interface Geometry {
+  location: { lat: number, lng: number },
+  location_type: string,
+  viewport?: { 
+    northeast: { lat: number, lng: number },
+    southwest: { lat: number, lng: number }
+  }
+}
 
-const Map = () => {
-  const center = useMemo(() => ({ lat: 34.1, lng: -84 }), []);
-  const { isLoaded } = useLoadScript({ googleMapsApiKey: import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY });
+const Map = ({ location }: { location: string }) => {
+  const [mapInfo, setMapInfo] = useState<Geometry | undefined>(undefined);
+  const key = import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY
+  const formatAddress = location.replace(/,\s|,|\s/g, "%20")
+  console.log(formatAddress)
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${formatAddress}&key=${key}`
+  
+  useEffect(() => {
+    axios.get(url)
+    .then(resp => resp.data)
+    .then(data => {
+      const loc = data.results[0]
+      const geo = loc["geometry"];
+      geo.lat = mapInfo?.location.lat
+      geo.lng = mapInfo?.location.lng
+      setMapInfo(geo)
+    })
+    .catch(error => console.log(error))
+  }, [url,setMapInfo, mapInfo?.location.lat, mapInfo?.location.lng])
+  
+  useEffect(() => {
+    console.log("Object: " + JSON.stringify(mapInfo?.location))
+  },[mapInfo])
+
+  const { isLoaded } = useLoadScript({ googleMapsApiKey: key });
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
   return (
-    <GoogleMap zoom={17} center={center} mapContainerClassName="map-container">
-      <Marker position={center} />
+    <GoogleMap zoom={17} center={mapInfo?.location} mapContainerClassName="map-container">
+      {/*<Marker position={mapInfo?.location} />*/}
     </GoogleMap>
   );
 }

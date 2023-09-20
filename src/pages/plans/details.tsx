@@ -33,7 +33,7 @@ import {
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useLocation, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useState } from "react";
 import usePlans from "../../hooks/planHook";
 import { v4 as uuid } from "uuid";
 import { TransitionProps } from "@mui/material/transitions";
@@ -218,7 +218,7 @@ const Details = ({ writable }: { writable: boolean }) => {
           />
         </Grid>
         <Grid item xs={12}>
-            <Map />
+            <Map location={plan.location}/>
         </Grid>
         <Grid item xs={12}>
           <TextareaAutosize

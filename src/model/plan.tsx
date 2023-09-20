@@ -52,7 +52,7 @@ export const PlansData : Array<Plan> = [
     name: 'Code Class',
     startDate: new Date('2023-09-15T12:00:00'),
     endDate: new Date('2023-09-15T13:30:00'), 
-    location: "Circuit, 8301 Main St, Woodstock, GA"
+    location: "8301 Main St, Woodstock, GA"
   },
   {
     id: '0002',
@@ -65,14 +65,14 @@ export const PlansData : Array<Plan> = [
     name: 'Code Class',
     startDate: new Date('2023-09-18T12:00:00'),
     endDate: new Date('2023-09-18T13:30:00'),
-    location: "Circuit, 8301 Main St, Woodstock, GA" 
+    location: "8301 Main St, Woodstock, GA" 
   },
   {
     id: '0004',
     name: 'Code Class',
     startDate: new Date('2023-09-22T12:00:00'),
     endDate: new Date('2023-09-22T13:30:00'),
-    location: "Circuit, 8301 Main St, Woodstock, GA" 
+    location: "8301 Main St, Woodstock, GA" 
   },
   {
     id: '0005',
@@ -85,14 +85,14 @@ export const PlansData : Array<Plan> = [
     name: 'Code Class',
     startDate: new Date('2023-09-25T12:00:00'),
     endDate: new Date('2023-09-25T13:30:00'),
-    location: "Circuit, 8301 Main St, Woodstock, GA" 
+    location: "8301 Main St, Woodstock, GA" 
   },
   {
     id: '0007',
     name: 'Code Class',
     startDate: new Date('2023-09-29T12:00:00'),
     endDate: new Date('2023-09-29T13:30:00'),
-    location: "Circuit, 8301 Main St, Woodstock, GA" 
+    location: "8301 Main St, Woodstock, GA" 
   },
   {
      id: '0008',
@@ -105,6 +105,6 @@ export const PlansData : Array<Plan> = [
     name: 'Code Class',
     startDate: new Date('2023-10-02T12:00:00'),
     endDate: new Date('2023-10-02T13:30:00'),
-    location: "Circuit, 8301 Main St, Woodstock, GA"
+    location: "8301 Main St, Woodstock, GA"
   }
 ]
