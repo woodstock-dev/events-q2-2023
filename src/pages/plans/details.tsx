@@ -217,9 +217,7 @@ const Details = ({ writable }: { writable: boolean }) => {
             onChange={handleLocationChange}
           />
         </Grid>
-        <Grid item xs={12}>
-            <Map location={plan.location}/>
-        </Grid>
+        {plan.location ? <Grid item xs={12}><Map location={plan.location}/></Grid> : null}
         <Grid item xs={12}>
           <TextareaAutosize
             className="input-item"

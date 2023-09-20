@@ -54,7 +54,7 @@ const Map = ({ location }: { location: string }) => {
   }
   return (
     <GoogleMap zoom={17} center={mapInfo?.location} mapContainerClassName="map-container">
-      {/*<Marker position={mapInfo?.location} />*/}
+      {mapInfo ? <Marker position={mapInfo.location}/> : null}
     </GoogleMap>
   );
 }
