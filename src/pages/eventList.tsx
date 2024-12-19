@@ -20,7 +20,7 @@
 import EventCard from '../components/eventCard';
 import { Paper, Typography } from '@mui/material';
 import { Container } from '@mui/material';
-import { allTasks } from '../@types/data';
+import { allTasks } from '../@types/context';
 import DashMenu from '../components/dashMenu';
 import { Route, Routes, Outlet, useNavigate } from 'react-router-dom';
 import AddEvents from './addEvents';

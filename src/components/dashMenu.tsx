@@ -105,7 +105,7 @@ export default function DashMenu() {
             sx={{
               position: 'sticky',
               right: 200,
-              color: 'white',
+              color: 'inherit',
             }}
           >
             <Menu />

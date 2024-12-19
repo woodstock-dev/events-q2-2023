@@ -26,6 +26,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import SidebarButton from '../components/sidebarButton';
 import React from 'react';
+import { useAuth } from '../hooks/auth';
+import { useState } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -51,8 +53,14 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
-      password: data.get('password'),
     });
+  };
+
+  const [user, setUser] = useState('');
+  const auth = useAuth();
+
+  const signedIn = () => {
+    console.log('signed in');
   };
 
   return (
@@ -83,21 +91,11 @@ export default function Login() {
               margin='normal'
               required
               fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
+              id='login-field'
+              label='Login Name'
+              name='login'
               autoFocus
-            />
-            <TextField
-              margin='normal'
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
-              autoComplete='current-password'
+              onChange={(e) => setUser(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
@@ -108,6 +106,7 @@ export default function Login() {
               fullWidth
               variant='contained'
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => auth.signin(user, signedIn)}
             >
               Sign In
             </Button>

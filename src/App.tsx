@@ -10,7 +10,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import CssBaseline from '@mui/material/CssBaseline';
-
+import RequireAuth from './components/requireAuth';
 /**
  * Lazy loading pages with React lazy
  */
@@ -28,7 +28,14 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<LoginPage />}></Route>
-            <Route path='/events/*' element={<EventListPage />}></Route>
+            <Route
+              path='/events/*'
+              element={
+                <RequireAuth>
+                  <EventListPage />
+                </RequireAuth>
+              }
+            ></Route>
           </Route>
         </Routes>
       </React.Suspense>

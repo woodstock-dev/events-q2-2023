@@ -21,9 +21,14 @@ import IconButton from '@mui/material/IconButton';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { useNavigate } from 'react-router-dom';
 import DashMenu from './dashMenu';
-
+import { useState, useContext } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
+import RequireAuth from './requireAuth';
 const Header = () => {
+  const [user, setUser] = useState('');
+  const auth = useContext(AuthContext);
   const nav = useNavigate();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='fixed'>
@@ -37,8 +42,9 @@ const Header = () => {
           >
             <CalendarMonthIcon />
           </IconButton>
+
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Task Scheduler
+            <RequireAuth>{auth.user}'s </RequireAuth>Task Scheduler
           </Typography>
           <DashMenu />
         </Toolbar>

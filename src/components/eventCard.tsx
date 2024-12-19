@@ -19,11 +19,11 @@ import { CalendarIcon } from '@mui/x-date-pickers';
 import { Delete, Edit } from '@mui/icons-material';
 import { Grid } from '@mui/material';
 import { TextField } from '@mui/material';
-import { TaskContext } from '../@types/data';
+import { TaskContext } from '../@types/context';
 import { createContext, useContext, useState } from 'react';
 
-import { allTasks } from '../@types/data';
-import { Task } from '../@types/data';
+import { allTasks } from '../@types/context';
+import { Task } from '../@types/context';
 
 const data = allTasks;
 

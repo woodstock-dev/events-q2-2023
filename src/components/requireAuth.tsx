@@ -11,3 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../hooks/auth';
+import { ReactNode } from 'react';
+import React from 'react';
+
+const RequireAuth = ({ children }: { children: ReactNode }) => {
+  const auth = useAuth();
+  if (!auth || !auth.user) {
+    return <Navigate to={'/'} />;
+  } else {
+    return <React.Fragment>{children}</React.Fragment>;
+  }
+};
+export default RequireAuth;
